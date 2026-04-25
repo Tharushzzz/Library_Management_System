@@ -11,3 +11,9 @@
     text-align: center;
     padding: 20px 0;
 }
+
+.menu_title_line{
+    width: 100%;
+    height: 1px;
+    background-color: #f1f5f92b;
+}
