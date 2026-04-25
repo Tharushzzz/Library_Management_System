@@ -5,3 +5,9 @@
     width: 20vw;
     height: 100vh;
 }
+
+.menu_title{
+    color: #f1f5f9;
+    text-align: center;
+    padding: 20px 0;
+}
