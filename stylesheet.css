@@ -117,3 +117,15 @@
     margin-top: 20px;
 }
 
+.pro_form_title{
+    color: #1e293b;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.pro_form_title_line{
+    width: 100%;
+    height: 1px;
+    background-color: #303c47;
+    margin-bottom: 20px;
+}
