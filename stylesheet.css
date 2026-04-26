@@ -18,10 +18,20 @@
     background-color: #f1f5f92b;
 }
 
+.menu_btn{
+    margin-left:10px;
+    margin-right: 10px;
+}
+
 .nav-link {
   color: #969da3; 
 }
 
 .nav-link.active {
   color: #f1f5f9; 
+}
+
+.nav-link:hover {
+    color: #f1f5f9;
+    background-color: #324154;
 }
