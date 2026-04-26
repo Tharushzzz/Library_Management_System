@@ -39,6 +39,15 @@
     background-color: #324154;
 }
 
+.welcome{
+    color: #86a0be;
+    font-weight: 400;
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    padding-left: 25px;
+}
+
 .logout_btn{
     padding: 6px 57px;
     margin-left: 10px;
@@ -46,5 +55,5 @@
     font-weight: 500;
     font-size: 16px;
     position: absolute;
-    bottom: 10px;
+    bottom: 15px;
 }
