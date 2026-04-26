@@ -13,10 +13,14 @@
 </head>
 
 <body>
+  <!-- Nav bar -->
   <div class="d-flex align-items-start">
     <div class="nav flex-column gap-2 nav-pills me-3 menu_bg_color menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <!-- title -->
       <h3 class="menu_title">Library <br> Management</h3>
       <div class="menu_title_line"></div>
+
+      <!-- menu-items -->
       <button class="nav-link active mt-4 d-flex gap-2 align-items-center menu_btn" id="v-pills-staff-tab" data-bs-toggle="pill" data-bs-target="#v-pills-staff"
         type="button" role="tab" aria-controls="v-pills-staff" aria-selected="true">
         <i class="fa-regular fa-user" style="color: rgb(160, 164, 165);"></i>
@@ -44,15 +48,22 @@
       </button>
 
 
-      <button class="nav-link d-flex gap-2 align-items-center menu_btn" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings"
-        type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+      <button class="nav-link d-flex gap-2 align-items-center menu_btn" id="v-pills-borrow-tab" data-bs-toggle="pill" data-bs-target="#v-pills-borrow"
+        type="button" role="tab" aria-controls="v-pills-borrow" aria-selected="false">
         <i class="fa-solid fa-bookmark" style="color: rgb(160, 164, 165);"></i>
         Borrow Details
       </button>
 
-
+      <button class="nav-link d-flex gap-2 align-items-center menu_btn" id="v-pills-fine-tab" data-bs-toggle="pill" data-bs-target="#v-pills-fine"
+        type="button" role="tab" aria-controls="v-pills-fine" aria-selected="false">
+        <i class="fa-solid fa-magnifying-glass" style="color: rgb(160, 164, 165);"></i>
+        Fine Users
+      </button>
 
     </div>
+
+
+    <!-- menu-tabs -->
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-staff" role="tabpanel" aria-labelledby="v-pills-staff-tab"
         tabindex="0">...</div>
