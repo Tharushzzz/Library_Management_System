@@ -9,20 +9,31 @@
   </link>
   <script src="https://kit.fontawesome.com/d3c42d7fff.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="stylesheet.css">
+  <script src="script.js" defer></script>
+
   <title>Library Management System</title>
 </head>
 
 <body>
 
-  <!-- mobile view btn -->
-  <button id="menu_btn" class="btn btn-primary d-md-none menu_mobile_btn" type="button" >
-    <i class="fas fa-bars" style="color: rgb(230, 232, 232);"></i>
-  </button>
+  
 
 
   <!-- Nav bar -->
-  <div id="menu" class="d-md-flex d-none align-items-start">
-    <div class="nav flex-column gap-2 nav-pills me-3 menu_bg_color menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+  <div id="menu" class="d-flex align-items-start nav-container">
+
+    <!-- mobile view btn -->
+    <button id="menu_btn" class="btn btn-primary d-md-none menu_mobile_btn" >
+      <i class="fas fa-bars" style="color: rgb(230, 232, 232);"></i>
+    </button>
+
+
+    <div class="nav flex-column gap-2 nav-pills me-3 menu_bg_color menu" id="navbar" role="tablist" aria-orientation="vertical">
+
+    <button id="menu-close" class="btn d-md-none menu_close_btn" >
+      <i class="fa-solid fa-xmark" style="color: rgb(255, 255, 255);"></i>
+    </button>
+
       <!-- title -->
       <h3 class="menu_title">Library <br> Management</h3>
       <div class="menu_title_line"></div>
@@ -91,7 +102,7 @@
 
       <!-- Staff-Users-tab -->
       <div class="tab-pane fade show active" id="v-pills-staff" role="tabpanel" aria-labelledby="v-pills-staff-tab"
-        tabindex="0">staff Users this show admin only blabalabalaa
+        tabindex="0">staff Users this show admin only
       </div>
 
       <!-- User-profile-tab -->

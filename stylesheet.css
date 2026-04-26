@@ -7,6 +7,19 @@
     height: 100vh;
 }
 
+@media (max-width: 768px) {
+    .menu{
+        position: fixed;
+        left: -198px;
+        transition: left 0.25s ease;
+        z-index: 10;
+    }
+
+    .menu.active {
+        left: 0;
+    }
+}
+
 .menu_title{
     color: #f1f5f9;
     text-align: center;
@@ -60,10 +73,24 @@
     bottom: 15px;
 }
 
+@media (max-width: 768px) {
+    .logout_btn{
+        padding: 6px 30px;
+    }
+}
+
 
 /* mobile nav */
 
 .menu_mobile_btn{
     height: 100vh;
     background-color: #1e293b;
+    margin-right: 15px;
+    border: none;
+    border-radius: 0 10px 10px 0;
+}
+
+.menu_close_btn{
+    background-color: #2c3644;
+    border: none;
 }
