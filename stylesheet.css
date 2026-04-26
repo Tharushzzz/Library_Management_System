@@ -113,8 +113,8 @@
 .pro_title{
     color: #1e293b;
     font-weight: 600;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 40px;
+    margin-bottom: 30px;
 }
 
 .pro_form_title{
@@ -134,6 +134,29 @@
     background-color: #f1f5f9;
     border-radius: 10px;
     padding: 20px;
-    width: 80vw;
+    width: 60vw;
     
+}
+
+.form-control{
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.pro_name_box{
+    width: 100%;
+}
+
+.form-label{
+    color: #717897;
+    font-weight: 500;
+    margin: 0;
+}
+
+.pro_pass_box{
+    margin-bottom: 30px;
+}
+
+.pro_save_btn{
+    margin-top: 10px;
 }

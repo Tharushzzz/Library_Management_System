@@ -145,19 +145,40 @@
           <p class="pro_form_title">User Information</p>
           <div class="pro_form_title_line"></div>
           <form class="edit_form">
+
             <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Enter your name">
+              <label for="User_ID" class="form-label">User ID</label>
+              <input type="text" class="form-control" id="User_ID" disabled>
             </div>
+
+            <div class="d-flex gap-3 justify-content-between">
+              <div class="mb-3 pro_name_box">
+                <label for="first_name" class="form-label ">First Name</label>
+                <input type="text" class="form-control" id="first_name" placeholder="your first name">
+              </div>
+              <div class="mb-3 pro_name_box">
+                <label for="last_name" class="form-label ">Last Name</label>
+                <input type="text" class="form-control" id="last_name" placeholder="your last name">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="your username">
+            </div>
+          
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter your email">
+              <input type="email" class="form-control" id="email" placeholder="your email">
             </div>
+
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Enter new password">
+              <input type="password" class="form-control" id="password" placeholder="your new password">
             </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+
+
+            <button type="submit" class="btn btn-primary pro_save_btn">Save Changes</button>
           </form>
         </div>
 
