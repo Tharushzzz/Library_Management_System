@@ -137,20 +137,24 @@
       </div>
 
       <!-- Edit-Profile-tab -->
-      <div class="tab-pane fade" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab"
-        tabindex="0">
+      <div class="tab-pane fade" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab" tabindex="0">
+
         <h3 class="pro_title">Edit Profile</h3>
 
         <div class="pro_cont">
           <p class="pro_form_title">User Information</p>
           <div class="pro_form_title_line"></div>
+
           <form class="edit_form">
 
+            <!-- User ID -->
             <div class="mb-3">
               <label for="User_ID" class="form-label">User ID</label>
-              <input type="text" class="form-control" id="User_ID" disabled>
+              <input type="text" class="form-control form-control-id" id="User_ID" disabled>
+              <p class="pro_note">User ID cannot be changed.</p>
             </div>
 
+            <!-- Names -->
             <div class="d-flex gap-3 justify-content-between">
               <div class="mb-3 pro_name_box">
                 <label for="first_name" class="form-label ">First Name</label>
@@ -162,22 +166,26 @@
               </div>
             </div>
 
+            <!-- Username -->
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control" id="username" placeholder="your username">
             </div>
           
+            <!-- Email -->
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" placeholder="your email">
             </div>
 
+            <!-- Password -->
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="your new password">
+              <input type="password" class="form-control form-control-id" id="password" placeholder="your new password">
+              <p class="pro_note">Must be more than 8 characters.</p>
             </div>
 
-
+            <!-- Save Changes Button -->
             <button type="submit" class="btn btn-primary pro_save_btn">Save Changes</button>
           </form>
         </div>
