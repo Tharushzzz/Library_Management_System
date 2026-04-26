@@ -113,8 +113,8 @@
 .pro_title{
     color: #1e293b;
     font-weight: 600;
-    text-align: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .pro_form_title{
@@ -128,4 +128,12 @@
     height: 1px;
     background-color: #303c47;
     margin-bottom: 20px;
+}
+
+.pro_cont{
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80vw;
+    
 }
