@@ -38,3 +38,13 @@
     color: #f1f5f9;
     background-color: #324154;
 }
+
+.logout_btn{
+    padding: 6px 68px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    position: absolute;
+    bottom: 10px;
+}
