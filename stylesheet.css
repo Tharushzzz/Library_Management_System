@@ -1,3 +1,5 @@
+/* nav bar */
+
 .menu_bg_color{
     background-color: #1e293b;
 }
@@ -56,4 +58,12 @@
     font-size: 16px;
     position: absolute;
     bottom: 15px;
+}
+
+
+/* mobile nav */
+
+.menu_mobile_btn{
+    height: 100vh;
+    background-color: #1e293b;
 }
