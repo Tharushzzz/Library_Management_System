@@ -5,6 +5,7 @@
 }
 .menu{
     height: 100vh;
+    border-radius: 0 10px 10px 0;
 }
 
 @media (max-width: 768px) {
