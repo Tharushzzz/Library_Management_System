@@ -80,10 +80,11 @@
       <p class="welcome d-none d-md-block">Welcome,<spam>User</spam></p>
 
       <!-- Profile edit -->
-       <button type="button" class="btn btn-secondary edit_btn">
+       <button class=" btn btn-secondary edit_btn" id="v-pills-edit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit"
+        type="button" role="tab" aria-controls="v-pills-edit" aria-selected="false">
         <i class="fa-solid fa-user-pen" style="color: rgb(255, 255, 255);"></i>
         Edit Profile
-       </button>
+      </button>
 
       
       <!-- Logout-btn -->
@@ -133,6 +134,12 @@
       <div class="tab-pane fade" id="v-pills-fine" role="tabpanel" aria-labelledby="v-pills-fine-tab"
         tabindex="0">
         Fine
+      </div>
+
+      <!-- Edit-Profile-tab -->
+      <div class="tab-pane fade" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab"
+        tabindex="0">
+        <h3 class="pro_title">Edit Profile</h3>
       </div>
 
     </div>
