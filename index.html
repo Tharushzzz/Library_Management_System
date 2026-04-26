@@ -15,10 +15,6 @@
 </head>
 
 <body>
-
-  
-
-
   <!-- Nav bar -->
   <div id="menu" class="d-flex align-items-start nav-container">
 
@@ -30,9 +26,9 @@
 
     <div class="nav flex-column gap-2 nav-pills me-3 menu_bg_color menu" id="navbar" role="tablist" aria-orientation="vertical">
 
-    <button id="menu-close" class="btn d-md-none menu_close_btn" >
-      <i class="fa-solid fa-xmark" style="color: rgb(255, 255, 255);"></i>
-    </button>
+      <button id="menu-close" class="btn d-md-none menu_close_btn" >
+        <i class="fa-solid fa-xmark" style="color: rgb(255, 255, 255);"></i>
+      </button>
 
       <!-- title -->
       <h3 class="menu_title">Library <br> Management</h3>
@@ -43,13 +39,6 @@
         type="button" role="tab" aria-controls="v-pills-staff" aria-selected="true">
         <i class="fa-regular fa-user" style="color: rgb(160, 164, 165);"></i>
         Staff Users
-      </button>
-
-      <!-- need to add mt wehen staff user hide -->
-      <button class="nav-link d-flex gap-2 align-items-center menu_btn" id="v-pills-user-tab" data-bs-toggle="pill" data-bs-target="#v-pills-user"
-        type="button" role="tab" aria-controls="v-pills-user" aria-selected="false">
-        <i class="fa-regular fa-user" style="color: rgb(160, 164, 165);"></i>
-        User Profile
       </button>
       
 
@@ -87,12 +76,23 @@
       </button>
 
 
+    <div class="nav_bottom">
       <p class="welcome d-none d-md-block">Welcome,<spam>User</spam></p>
+
+      <!-- Profile edit -->
+       <button type="button" class="btn btn-secondary edit_btn">
+        <i class="fa-solid fa-user-pen" style="color: rgb(255, 255, 255);"></i>
+        Edit Profile
+       </button>
+
+      
       <!-- Logout-btn -->
       <button type="button" class="btn btn-danger logout_btn">
         <i class="fa-solid fa-arrow-right-from-bracket" style="color: rgb(255, 255, 255);"></i>
         Logout
       </button>
+    </div>
+      
 
     </div>
 
@@ -103,11 +103,6 @@
       <!-- Staff-Users-tab -->
       <div class="tab-pane fade show active" id="v-pills-staff" role="tabpanel" aria-labelledby="v-pills-staff-tab"
         tabindex="0">staff Users this show admin only
-      </div>
-
-      <!-- User-profile-tab -->
-      <div class="tab-pane fade show active" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab"
-        tabindex="0">user profile 
       </div>
 
       <!-- Books-tab -->
