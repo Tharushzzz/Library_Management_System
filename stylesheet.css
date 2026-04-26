@@ -17,3 +17,11 @@
     height: 1px;
     background-color: #f1f5f92b;
 }
+
+.nav-link {
+  color: #969da3; 
+}
+
+.nav-link.active {
+  color: #f1f5f9; 
+}
