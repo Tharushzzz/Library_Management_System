@@ -172,6 +172,10 @@
 
 
 /* Log-In */
+
+.login_container{
+    background: linear-gradient(to right, #f5f7fa, #e4ecf7);;
+}
 .log_card{
     width: 500px;
     padding: 30px;
