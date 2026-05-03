@@ -232,6 +232,24 @@
     margin-bottom: 20px;
 }
 
+.log_btns{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.log_btns .btn{
+    background-color: #e4ecf7;
+    color: black;
+    font-weight: 400;
+}
+
+.log_btns .btn:hover{
+    background-color: #cbd5e1;
+    color: black;
+}
+
 .login_form{
     width: 100%;
 }
