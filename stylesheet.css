@@ -359,3 +359,10 @@
         font-size: 11px;
     }
 }
+/*Book category */
+.pro_form_title{
+    color: #1e293b;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
