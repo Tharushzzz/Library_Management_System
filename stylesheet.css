@@ -250,6 +250,18 @@
     color: black;
 }
 
+.log_btns .btn.active{
+    background-color: #1e293b;
+    color: #f8fafc;
+    border-color: #1e293b;
+}
+
+.log_btns .btn.active:hover{
+    background-color: #1e293b;
+    color: #f8fafc;
+}
+
+
 .login_form{
     width: 100%;
 }
