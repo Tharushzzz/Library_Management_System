@@ -168,3 +168,11 @@
 .pro_save_btn{
     margin-top: 10px;
 }
+
+
+
+/* Log-In */
+.log_card{
+    width: 500px;
+    padding: 30px;
+}
