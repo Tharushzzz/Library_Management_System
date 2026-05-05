@@ -274,3 +274,8 @@ body {
 .login_form{
     width: 100%;
 }
+
+/* Menu-tabs */
+.tab-content{
+    flex: 1;
+}
