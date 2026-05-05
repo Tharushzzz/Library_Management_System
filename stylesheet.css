@@ -295,3 +295,10 @@ body {
     font-weight: 500;
     font-size: 20px;
 }
+
+.inventory_database_title{
+    font-weight: 400;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
