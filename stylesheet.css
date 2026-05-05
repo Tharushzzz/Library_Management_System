@@ -302,3 +302,10 @@ body {
     margin-top: 20px;
     margin-left: 20px;
 }
+
+.table_header{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 15px;
+}
