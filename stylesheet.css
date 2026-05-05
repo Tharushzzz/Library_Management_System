@@ -280,3 +280,18 @@ body {
     flex: 1;
 }
 
+.book_management_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.add_book_btn{
+    margin-right: 20px;
+}
+
+.book_management_title{
+    font-weight: 500;
+    font-size: 20px;
+}
