@@ -279,3 +279,22 @@ body {
 .tab-content{
     flex: 1;
 }
+
+
+
+/* Staff Users Tab */
+
+.staff_users_tab{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.staff_title{
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
