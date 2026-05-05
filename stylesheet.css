@@ -279,3 +279,19 @@ body {
 .tab-content{
     flex: 1;
 }
+
+/*Category tabs */
+
+.Catogory_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.catogory_btn{
+   margin-right: 20px;
+}
+.catogory_title{
+    font-weight: 500;
+    font-size: 20px;
+}
