@@ -101,6 +101,9 @@ body {
 }
 
 
+
+
+
 /* mobile nav */
 
 .menu_mobile_btn{
@@ -291,4 +294,47 @@ body {
     height: 1px;
     background-color: #303c47;
     margin-bottom: 20px;
+}
+
+.Staff_tab_head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.staff_tab_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+
+/* Staff users table */
+
+.staff_table {
+    background-color: #f8fbff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #d7e2ee;
+}
+
+.staff_table thead th {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border-bottom: none;
+}
+
+.staff_table tbody td,
+.staff_table tbody th {
+    background-color: #f8fbff;
+    color: #1f2937;
+    border-color: #d7e2ee;
+}
+
+.staff_table tbody tr:hover td,
+.staff_table tbody tr:hover th {
+    background-color: #eaf2fb;
+}
+
 }
