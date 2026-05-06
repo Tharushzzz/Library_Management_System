@@ -283,6 +283,43 @@ body {
     flex: 1;
 }
 
+/*Category tabs */
+
+.Catogory_header{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+.btn-primary{
+   margin-right: 20px;
+}
+.catogory_title{
+    font-weight: 500;
+    font-size: 20px;
+}
+.catogory_title2{
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    
+}
+
+.table_header{
+    display: flex;
+    flex-direction: column; 
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: #d5d5d5
+
+}
+.head_color{
+    background-color:#e0e4e7;   
+    height: 80vh;
+    margin-right: 22px;
+}
+.catogory_table {
 /* Fine Management */
 .fine_cont{
     color: #1e293b;
@@ -340,6 +377,29 @@ body {
     font-size: 20px;
     margin-top: 10px;
     margin-left: 15px;
+.catogory_table thead th {
+.staff_table thead th {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border-bottom: none;
+}
+
+.catogory_table tbody td,
+.catogory_table tbody th {
+.staff_table tbody td,
+.staff_table tbody th {
+    background-color: #f8fbff;
+    color: #1f2937;
+    border-color: #d7e2ee;
+}
+
+.catogory_table tbody tr:hover td,
+.catogory_table tbody tr:hover th {
+    background-color: #eaf2fb;
+}
+.staff_table tbody tr:hover td,
+.staff_table tbody tr:hover th {
+    background-color: #eaf2fb;
 }
 
 .staff_content_title_line{
