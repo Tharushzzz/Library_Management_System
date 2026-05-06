@@ -347,15 +347,36 @@ body {
 }
 
 
-/* Staff users table */
+/* Staff Users Tab */
 
-.staff_table {
-    background-color: #f8fbff;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #d7e2ee;
+.staff_users_tab{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
 }
 
+.staff_title{
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.staff_content{
+    height: 80vh;
+    width: 98%;
+    background-color: #f1f5f9;
+}
+
+
+.staff_content_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 15px;
 .catogory_table thead th {
 .staff_table thead th {
     background-color: #1e293b;
@@ -381,4 +402,23 @@ body {
     background-color: #eaf2fb;
 }
 
+.staff_content_title_line{
+    width: 100%;
+    height: 1px;
+    background-color: #bdc6ce;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.Staff_tab_head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.staff_tab_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 15px;
 }
