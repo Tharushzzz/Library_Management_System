@@ -300,6 +300,37 @@ body {
     font-weight: 400;
     font-size: 15px;
     margin-top: 20px;
-    margin-left: 20px;
+    margin-bottom: 12px;
+
+
+}
+.head_color{
+  background-color:#e0e4e7;   
+    height: 80vh;
+    margin-right: 22px;
 }
 
+.book_table {
+    background-color: #f8fbff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #d7e2ee;
+}
+
+.book_table thead th {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border-bottom: none;
+}
+
+.book_table tbody td,
+.book_table tbody th {
+    background-color: #f8fbff;
+    color: #1f2937;
+    border-color: #d7e2ee;
+}
+
+.book_table tbody tr:hover td,
+.book_table tbody tr:hover th {
+    background-color: #eaf2fb;
+}

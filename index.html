@@ -109,28 +109,40 @@
       <!-- Books-tab -->
       <div class="tab-pane fade" id="v-pills-books" role="tabpanel" aria-labelledby="v-pills-books-tab"
         tabindex="0">
-      <div>
-        <div class="book_management_header">
-          <div class="book_management_title">Book Management</div>
-          <button type="button" class="btn btn-primary add_book_btn">+ Add Books</button>
-        </div>
-        <div>
-          <div class="inventory_database_title">Book Inventory Database</div>
           <div>
-          <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Book ID</th>
-                  <th scope="col">Book Name</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
+            <div class="book_management_header">
+                <div class="book_management_title">Book Management</div>
+                <button type="button" class="btn btn-primary add_book_btn">+ Add Books</button>
             </div>
-          </table>
-        </div>
 
-      </div>
+            <div class="book_header">
+              <div class="inventory_database_title">Book Inventory Database</div>
+              
+              <table class="table book_table">
+                <thead>
+                    <tr>
+                      <th scope="col">Book ID</th>
+                      <th scope="col">Book Name</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>
+                            <button type="button" class="btn btn-primary">Edit</button>
+                           <button type="button" class="btn btn-danger">Delete</button>
+                          </td>
+                        </tr>
+                  </tbody>
+              </table>
+          </div>
+        
+
+      
       </div>
 
       <!-- categories-tab  -->
