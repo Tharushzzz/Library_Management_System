@@ -1,5 +1,5 @@
 body {
-    background-color: #f1f5f9;
+    background-color: #d5dbdfe3;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
@@ -98,6 +98,34 @@ body {
     position: absolute;
     bottom: 15px;
     width: 100%;
+}
+
+
+/* Staff users table */
+
+.staff_table {
+    background-color: #f8fbff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #d7e2ee;
+}
+
+.staff_table thead th {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border-bottom: none;
+}
+
+.staff_table tbody td,
+.staff_table tbody th {
+    background-color: #f8fbff;
+    color: #1f2937;
+    border-color: #d7e2ee;
+}
+
+.staff_table tbody tr:hover td,
+.staff_table tbody tr:hover th {
+    background-color: #eaf2fb;
 }
 
 
@@ -292,3 +320,58 @@ body {
     background-color: #303c47;
     margin-bottom: 20px;
 }
+
+
+/* Staff Users Tab */
+
+.staff_users_tab{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.staff_title{
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.staff_content{
+    height: 80vh;
+    width: 98%;
+    background-color: #f1f5f9;
+}
+
+
+.staff_content_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.staff_content_title_line{
+    width: 100%;
+    height: 1px;
+    background-color: #bdc6ce;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.Staff_tab_head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.staff_tab_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 15px;
+}
+
