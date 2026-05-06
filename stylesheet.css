@@ -308,18 +308,6 @@ body {
     flex: 1;
 }
 
-/* Fine Management */
-.fine_cont{
-    color: #1e293b;
-    font-weight: 600;
-    margin-top: 20px;
-}
-.fine_title_line{
-    width: 100%;
-    height: 1px;
-    background-color: #303c47;
-    margin-bottom: 20px;
-}
 
 
 /* Staff Users Tab */
