@@ -299,6 +299,7 @@ body {
 .catogory_title2{
     font-weight: 400;
     margin-top: 20px;
+    margin-bottom: 10px;
     
 }
 
@@ -314,4 +315,28 @@ body {
     background-color:#e0e4e7;   
     height: 80vh;
     margin-right: 22px;
+}
+.catogory_table {
+    background-color: #f8fbff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #d7e2ee;
+}
+
+.catogory_table thead th {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border-bottom: none;
+}
+
+.catogory_table tbody td,
+.catogory_table tbody th {
+    background-color: #f8fbff;
+    color: #1f2937;
+    border-color: #d7e2ee;
+}
+
+.catogory_table tbody tr:hover td,
+.catogory_table tbody tr:hover th {
+    background-color: #eaf2fb;
 }
