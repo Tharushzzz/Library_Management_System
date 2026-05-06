@@ -284,9 +284,10 @@ body {
 
 .Catogory_header{
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 .catogory_btn{
    margin-right: 20px;
@@ -298,5 +299,19 @@ body {
 .catogory_title2{
     font-weight: 400;
     margin-top: 20px;
-    margin-left: 20px;
+    
+}
+
+.table_header{
+    display: flex;
+    flex-direction: column; 
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: #d5d5d5
+
+}
+.head_color{
+    background-color:#e0e4e7;   
+    height: 80vh;
+    margin-right: 22px;
 }
