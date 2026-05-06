@@ -140,7 +140,47 @@
                   </tbody>
               </table>
           </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
         
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+      
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Book</h5>
+        </div>
+        <form  action = "process.php" method = "post">
+          
+          <div class="modal-body">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> Book ID</label>        
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="E.G. B001">                  
+              </div>
+              <div class="mb-3">
+                <label for="inputpassword" class="form-label">Book Name</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+              </div>
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Category</label>
+                <select class="form-select" id="inputGroupSelect01">
+                  <option selected>Select category ...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+        </form>
+    </div>
+  </div>
+</div>
 
       
       </div>
