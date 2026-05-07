@@ -152,9 +152,10 @@
         <div class="modal-header">
           <h5 class="modal-title">Add New Book</h5>
         </div>
+
         <form  action = "process.php" method = "post">
           
-          <div class="modal-body">
+            <div class="modal-body">
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"> Book ID</label>        
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="E.G. B001">                  
@@ -163,24 +164,22 @@
                 <label for="inputpassword" class="form-label">Book Name</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
               </div>
-              <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Category</label>
-                <select class="form-select" id="inputGroupSelect01">
-                  <option selected>Select category ...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-         </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" value="Submit">
-        </div>
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">Category</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected>Select category ...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" value="Submit">
+          </div>
         </form>
-    </div>
-  </div>
-</div>
+      </div>
 
       
       </div>
@@ -209,63 +208,7 @@
         Fine
       </div>
 
-      <!-- Edit-Profile-tab -->
-      <div class="tab-pane fade" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab" tabindex="0">
-
-        <h3 class="pro_title">Edit Profile</h3>
-
-        <div class="pro_cont">
-          <p class="pro_form_title">User Information</p>
-          <div class="pro_form_title_line"></div>
-
-          <form class="edit_form">
-
-            <!-- User ID -->
-            <div class="mb-3">
-              <label for="User_ID" class="form-label">User ID</label>
-              <input type="text" class="form-control form-control-id" id="User_ID" disabled>
-              <p class="pro_note">User ID cannot be changed.</p>
-            </div>
-
-            <!-- Names -->
-            <div class="d-flex gap-3 justify-content-between">
-              <div class="mb-3 pro_name_box">
-                <label for="first_name" class="form-label ">First Name</label>
-                <input type="text" class="form-control" id="first_name" placeholder="your first name">
-              </div>
-              <div class="mb-3 pro_name_box">
-                <label for="last_name" class="form-label ">Last Name</label>
-                <input type="text" class="form-control" id="last_name" placeholder="your last name">
-              </div>
-            </div>
-
-            <!-- Username -->
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="your username">
-            </div>
-          
-            <!-- Email -->
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="your email">
-            </div>
-
-            <!-- Password -->
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control form-control-id" id="password" placeholder="your new password">
-              <p class="pro_note">Must be more than 8 characters.</p>
-            </div>
-
-            <!-- Save Changes Button -->
-            <button type="submit" class="btn btn-primary pro_save_btn">Save Changes</button>
-          </form>
-        </div>
-
-      </div>
-
-    </div>
+      <!-- Edit-profile-tab -->
   </div>
 
 
