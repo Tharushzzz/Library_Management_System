@@ -488,3 +488,18 @@ body {
     margin-top: 10px;
     margin-left: 15px;
 }
+
+.book_title{
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.book_content{
+    height: 80vh;
+    width: 98%;
+    background-color: #f1f5f9;
+    border-radius: 20px;
+}
