@@ -51,3 +51,26 @@ function showRegisterForm() {
 loginButton.addEventListener('click', showLoginForm);
 registerButton.addEventListener('click', showRegisterForm);
 
+
+// Book category toggle
+
+// Expose a safe global function for inline `onclick` handlers
+function toggleCategoriesForm() {
+    const form = document.getElementById('book_categories_form');
+    if (!form) return;
+    form.classList.toggle('active');
+}
+window.toggleCategoriesForm = toggleCategoriesForm;
+
+const categoriestab = document.getElementById('v-pills-categories');
+
+// Initialize button listeners after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const categoriesAddBtn = document.querySelector('.categories_add_btn');
+    if (categoriesAddBtn) {
+        categoriesAddBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleCategoriesForm();
+        });
+    }
+});
