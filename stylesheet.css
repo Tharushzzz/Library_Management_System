@@ -550,3 +550,8 @@ body {
     border-radius: 10px;
     overflow: hidden;
 }
+
+.book_table_head th {
+    background-color: #1e293b;
+    color: #f1f5f9;
+}
