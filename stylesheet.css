@@ -478,3 +478,13 @@ body {
 .book_categories_form.active{
     display: flex;
 }
+
+
+/* Book Management */
+.book_title{
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
