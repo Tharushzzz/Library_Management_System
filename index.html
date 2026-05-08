@@ -227,7 +227,29 @@
 
         </div>
 
-        
+        <!-- Books-categories add form -->
+        <div class="book_categories_form" id="book_categories_form">
+          <form class="categories_add_form">
+            <div class="mb-3">
+              <label for="category_id" class="form-label">Category ID</label>
+              <input type="text" class="form-control form-control-id" id="category_id" placeholder="Enter category ID">
+            </div>
+            <div class="mb-3">
+              <label for="category_name" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="category_name" placeholder="Enter category name">
+            </div>
+            <div class="mb-3">
+              <label for="category_description" class="form-label">Description</label>
+              <textarea class="form-control" id="category_description" rows="3"
+                placeholder="Enter category description"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary">Add Category</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleCategoriesForm()">Cancel</button>
+            </div>
+            
+          </form>
+        </div>
 
       </div>
 
