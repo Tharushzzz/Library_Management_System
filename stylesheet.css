@@ -494,14 +494,6 @@ body {
     margin-left: 15px;
 }
 
-.book_title{
-    color: #1e293b;
-    font-weight: 600;
-    font-size: 25px;
-    margin-top: 10px;
-    margin-left: 15px;
-}
-
 .book_content{
     height: 80vh;
     width: 98%;
@@ -514,5 +506,13 @@ body {
     flex-direction: column;
     gap: 20px;
     justify-content: center;
+}
+
+.book_content_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 15px;
 }
 
