@@ -481,6 +481,11 @@ body {
 
 
 /* Book Management */
+
+#v-pills-books{
+    position: relative;
+}
+
 .book_title{
     color: #1e293b;
     font-weight: 600;
@@ -503,3 +508,11 @@ body {
     background-color: #f1f5f9;
     border-radius: 20px;
 }
+
+.book_users_tab{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
