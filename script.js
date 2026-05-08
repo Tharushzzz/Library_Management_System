@@ -74,3 +74,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+// Book registration toggle
+
+// Expose a safe global function for inline `onclick` handlers
+function toggleBookForm() {
+    const form = document.getElementById('book_form');
+    if (!form) return;
+    form.classList.toggle('active');
+}
+window.toggleBookForm = toggleBookForm;
+
+const booktab = document.getElementById('v-pills-books');
+
+// Initialize button listeners after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const bookAddBtn = document.querySelector('.book_add_btn');
+    if (bookAddBtn) {
+        bookAddBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleBookForm();
+        });
+    }
+});
