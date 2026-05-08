@@ -181,7 +181,79 @@
       <div class="tab-pane fade" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"
         tabindex="0">
 
-          
+          <div class="categories_users_tab">
+          <div class="categories_title_box">
+            <span class="categories_title">Categories Management </span>
+            <button class="btn btn-success btn-md categories_add_btn" id="categories_add_btn" onclick="toggleCategoriesForm()">Add Category</button>
+          </div>
+
+
+          <div class="categories_content">
+            <div class="categories_content_title_box">
+              <div class="categories_content_title">Book Categories</div>
+              <div class="categories_content_title_line"></div>
+            </div>
+
+            <div class="categories_tab_head">
+              <table class="table categories_table">
+                <thead class="categories_table_head">
+                  <tr>
+                    <th scope="col">Category ID</th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Books-categories add form -->
+        <div class="book_categories_form" id="book_categories_form">
+          <form class="categories_add_form">
+            <div class="mb-3">
+              <label for="category_id" class="form-label">Category ID</label>
+              <input type="text" class="form-control form-control-id" id="category_id" placeholder="Enter category ID">
+            </div>
+            <div class="mb-3">
+              <label for="category_name" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="category_name" placeholder="Enter category name">
+            </div>
+            <div class="mb-3">
+              <label for="category_description" class="form-label">Description</label>
+              <textarea class="form-control" id="category_description" rows="3"
+                placeholder="Enter category description"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary">Add Category</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleCategoriesForm()">Cancel</button>
+            </div>
+            
+          </form>
+        </div>
 
       </div>
 
