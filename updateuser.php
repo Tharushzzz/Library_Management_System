@@ -1,7 +1,7 @@
 <?php
 
     include 'db_config.php';
-    session_start();
+    
     // Handle update user profile
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_user'])) {
       $userId = $conn->real_escape_string($_POST['user_id']);
@@ -22,4 +22,19 @@
         header("Location: index.php");
         exit();
       }
+    }
+
+    // Load logged-in user's profile data for Edit Profile form
+    $selectedUser = null;
+    if (isset($_SESSION['user_id'])) {
+      $currentUserId = $conn->real_escape_string($_SESSION['user_id']);
+      $currentUserResult = $conn->query("SELECT user_id, first_name, last_name, username, email, password FROM user WHERE user_id = '$currentUserId' LIMIT 1");
+      if ($currentUserResult && $currentUserResult->num_rows === 1) {
+        $selectedUser = $currentUserResult->fetch_assoc();
+      }
+    }
+
+    
+    
+
 ?>

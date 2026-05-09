@@ -1,6 +1,8 @@
 <?php
   session_start();
   include 'db_config.php';
+  include 'updateuser.php';
+  include 'delete_data.php';
 
 
   // Check if user is logged in
@@ -10,30 +12,9 @@
     exit();
   }
 
+  
 
-  // Handle delete user
-  if (isset($_GET['delete_user'])) {
-    $deleteUserId = $conn->real_escape_string($_GET['delete_user']);
-    $conn->query("DELETE FROM user WHERE user_id = '$deleteUserId'");
-    header("Location: index.php#v-pills-staff");
-    exit();
-  }
-
-  // Handle delete book
-  if (isset($_GET['delete_book'])) {
-    $deleteBookId = $conn->real_escape_string($_GET['delete_book']);
-    $conn->query("DELETE FROM book WHERE book_id = '$deleteBookId'");
-    header("Location: index.php#v-pills-books");
-    exit();
-  }
-
-  // Handle delete category
-  if (isset($_GET['delete_category'])) {
-    $deleteCategoryId = $conn->real_escape_string($_GET['delete_category']);
-    $conn->query("DELETE FROM bookcategory WHERE category_id = '$deleteCategoryId'");
-    header("Location: index.php#v-pills-categories");
-    exit();
-  }
+  
 
 
   // // Handle update user profile
@@ -53,15 +34,15 @@
   //     }
     // }
 
-    // Load logged-in user's profile data for Edit Profile form
-    $selectedUser = null;
-    if (isset($_SESSION['user_id'])) {
-      $currentUserId = $conn->real_escape_string($_SESSION['user_id']);
-      $currentUserResult = $conn->query("SELECT user_id, first_name, last_name, username, email, password FROM user WHERE user_id = '$currentUserId' LIMIT 1");
-      if ($currentUserResult && $currentUserResult->num_rows === 1) {
-        $selectedUser = $currentUserResult->fetch_assoc();
-      }
-    }
+    // // Load logged-in user's profile data for Edit Profile form
+    // $selectedUser = null;
+    // if (isset($_SESSION['user_id'])) {
+    //   $currentUserId = $conn->real_escape_string($_SESSION['user_id']);
+    //   $currentUserResult = $conn->query("SELECT user_id, first_name, last_name, username, email, password FROM user WHERE user_id = '$currentUserId' LIMIT 1");
+    //   if ($currentUserResult && $currentUserResult->num_rows === 1) {
+    //     $selectedUser = $currentUserResult->fetch_assoc();
+    //   }
+    // }
   
 
 ?>
