@@ -35,6 +35,33 @@
     exit();
   }
 
+
+  // // Handle update user profile
+  //   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_user'])) {
+  //     $userId = $conn->real_escape_string($_POST['user_id']);
+  //     $firstName = $conn->real_escape_string($_POST['first_name']);
+  //     $lastName = $conn->real_escape_string($_POST['last_name']);
+  //     $username = $conn->real_escape_string($_POST['username']);
+  //     $email = $conn->real_escape_string($_POST['email']);
+  //     $password = $conn->real_escape_string($_POST['password']);
+
+  //     $updateSql = "UPDATE user SET first_name = '$firstName', last_name = '$lastName', username = '$username', email = '$email', password = 'md5($password)' WHERE user_id = '$userId'";
+  //     if ($conn->query($updateSql) === TRUE) {
+  //       $_SESSION['username'] = $username;
+  //       header("Location: index.php");
+  //       exit();
+  //     }
+    // }
+
+    // Load logged-in user's profile data for Edit Profile form
+    $selectedUser = null;
+    if (isset($_SESSION['user_id'])) {
+      $currentUserId = $conn->real_escape_string($_SESSION['user_id']);
+      $currentUserResult = $conn->query("SELECT user_id, first_name, last_name, username, email, password FROM user WHERE user_id = '$currentUserId' LIMIT 1");
+      if ($currentUserResult && $currentUserResult->num_rows === 1) {
+        $selectedUser = $currentUserResult->fetch_assoc();
+      }
+    }
   
 
 ?>
@@ -60,6 +87,8 @@
 <body>
   <!-- Nav bar -->
   <div id="menu" class="d-flex align-items-start nav-container">
+    
+
 
     <!-- mobile view btn -->
     <button id="menu_btn" class="btn btn-primary d-md-none menu_mobile_btn">
