@@ -94,14 +94,46 @@ const booktab = document.getElementById('v-pills-books');
 // Initialize button listeners after DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     const bookAddBtn = document.querySelector('.book_add_btn');
+    const bookEditBtns = document.querySelectorAll('.book_edit_btn');
     if (bookAddBtn) {
         bookAddBtn.addEventListener('click', (e) => {
             e.preventDefault();
             toggleBookForm();
         });
     }
+    if (bookEditBtns) {
+        bookEditBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleBookForm();
+            });
+        });
+    }
 });
 
+
+// Book borrow toggle
+
+// Expose a safe global function for inline `onclick` handlers
+function toggleBorrowForm() {
+    const form = document.getElementById('borrow_form');
+    if (!form) return;
+    form.classList.toggle('active');
+}
+window.toggleBorrowForm = toggleBorrowForm;
+
+const borrowtab = document.getElementById('v-pills-borrow');
+
+// Initialize button listeners after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const borrowAddBtn = document.querySelector('.borrow_add_btn');
+    if (borrowAddBtn) {
+        borrowAddBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleBorrowForm();
+        });
+    }
+});
 
 
 

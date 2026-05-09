@@ -252,7 +252,7 @@
                                       <td>" . htmlspecialchars($row2['book_name']) . "</td>
                                       <td>" . htmlspecialchars($row2['category_id']) . "</td>
                                       <td>
-                                        <button class='btn btn-primary btn-sm'>Edit</button>
+                                        <button class='btn btn-primary btn-sm' onclick=\"toggleBookForm()\">Edit</button>
                                         <a class='btn btn-danger btn-sm' href='index.php?delete_book=" . urlencode($row2['book_id']) . "' onclick=\"return confirm('Delete this book?');\">Delete</a>
                                       </td>
                                     </tr>";
@@ -335,7 +335,7 @@
                                     <td>" . htmlspecialchars($row3['category_Name']) . "</td>
                                     <td>" . htmlspecialchars($row3['date_modified']) . "</td>
                                     <td>
-                                      <button class='btn btn-primary btn-sm'>Edit</button>
+                                      <button class='btn btn-primary btn-sm' onclick=\"toggleCategoriesForm()\">Edit</button>
                                       <a class='btn btn-danger btn-sm' href='index.php?delete_category=" . urlencode($row3['category_id']) . "' onclick=\"return confirm('Delete this category?');\">Delete</a>
                                     </td>
                                   </tr>";
@@ -388,7 +388,10 @@
 
       <!-- Borrow-Books-tab -->
       <div class="tab-pane fade" id="v-pills-borrow" role="tabpanel" aria-labelledby="v-pills-borrow-tab" tabindex="0">
-        Borrow Books
+        
+          
+
+
       </div>
 
       <!-- Fine-Users-tab -->
