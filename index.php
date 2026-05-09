@@ -395,6 +395,9 @@
           <h1 class="fine_title">Fine Management</h1>
           <div class="fine_title_line"></div>
         </div>
+        <div class="fine_search_wrap">
+          <input type="search" id="fineSearch" class="form-control fine_search" placeholder="Search fine users by ID, username, book, or date">
+        </div>
         <div class="fine_table_cont">
           <table class="table table-striped fine_table">
             <thead>
@@ -407,10 +410,15 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
-              <td></td>
-            </tbody>
-              <!-- Fine data will be dynamically inserted here -->
+            <tbody id="fineTableBody">
+              <tr>
+                <td>1</td>
+                <td>john_doe</td>
+                <td>The Great Gatsby</td>
+                <td>2024-05-01</td>
+                <td>$5.00</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
         </div>
