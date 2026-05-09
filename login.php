@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include 'db_config.php';
 ?>
 
@@ -15,6 +16,7 @@
     <script src="https://kit.fontawesome.com/d3c42d7fff.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="script.js" defer></script>
+    
     <title>Login</title>
 </head>
 <body>
@@ -28,6 +30,14 @@
 
       <div class="login-right">
         <div class="log_card">
+          <?php
+            if (isset($_SESSION['alert_message'])) {
+              $type = $_SESSION['alert_type'] ?? 'info';
+              echo '<div class="alert alert-' . htmlspecialchars($type) . '" role="alert">' . htmlspecialchars($_SESSION['alert_message']) . '</div>';
+              unset($_SESSION['alert_message']);
+              unset($_SESSION['alert_type']);
+            }
+          ?>
           <div class="log_title">Staff Portal</div>
           <div class="log_title_line"></div>
           <p class="log_text">Enter your credentials to access the administrative dashboard.</p>
@@ -86,7 +96,7 @@
               <label for="new_password" class="form-label">Password</label>
               <input type="password" class="form-control" id="new_password" name="new_password" required minlength="8">
             </div>
-            <button type="submit" class="btn btn-primary w-100">Register</button>
+            <button type="submit" class="btn btn-primary w-100" id="registerSubmitBtn" >Register</button>
           </form>
 
         </div>
