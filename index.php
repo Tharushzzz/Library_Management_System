@@ -36,7 +36,7 @@
 </head>
 
 <body>
-
+  
   <!-- Nav bar -->
   <div id="menu" class="d-flex align-items-start nav-container">
     
@@ -131,6 +131,16 @@
 
     <!-- menu-tabs -->
     <div class="tab-content" id="v-pills-tabContent">
+      
+      <!-- Alert Messages -->
+          <?php if (isset($_SESSION['alert_message'])): ?>
+            <div class="container mt-3">
+              <div class="alert alert-<?php echo htmlspecialchars($_SESSION['alert_type'] ?? 'info'); ?>" role="alert">
+                <?php echo htmlspecialchars($_SESSION['alert_message']); ?>
+              </div>
+            </div>
+            <?php unset($_SESSION['alert_message'], $_SESSION['alert_type']); ?>
+          <?php endif; ?>
 
       <!-- Staff-Users-tab -->
       <div class="tab-pane fade show active" id="v-pills-staff" role="tabpanel" aria-labelledby="v-pills-staff-tab"
@@ -291,16 +301,6 @@
       <div class="tab-pane fade" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"
         tabindex="0">
 
-        <!-- Alert Messages -->
-          <?php if (isset($_SESSION['alert_message'])): ?>
-            <div class="container mt-3">
-              <div class="alert alert-<?php echo htmlspecialchars($_SESSION['alert_type'] ?? 'info'); ?>" role="alert">
-                <?php echo htmlspecialchars($_SESSION['alert_message']); ?>
-              </div>
-            </div>
-            <?php unset($_SESSION['alert_message'], $_SESSION['alert_type']); ?>
-          <?php endif; ?>
-
           <div class="categories_users_tab">
           <div class="categories_title_box">
             <span class="categories_title">Categories Management </span>
@@ -400,7 +400,7 @@
         </div>
         <div class="fine_table_cont">
           <table class="table table-striped fine_table">
-            <thead>
+            <thead class="fine_table_head">
               <tr>
                 <th scope="col">User ID</th>
                 <th scope="col">Username</th>
@@ -497,20 +497,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
-  <script>
-    function activateTabFromHash() {
-      const hash = window.location.hash;
-      if (!hash) return;
-
-      const tabTrigger = document.querySelector(`[data-bs-target="${hash}"]`);
-      if (tabTrigger && window.bootstrap) {
-        bootstrap.Tab.getOrCreateInstance(tabTrigger).show();
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', activateTabFromHash);
-    window.addEventListener('hashchange', activateTabFromHash);
-  </script>
+  
 
 </body>
 

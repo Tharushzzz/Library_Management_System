@@ -401,6 +401,16 @@ body {
     margin-bottom: 20px;
 }
 
+.fine_table_cont{
+    margin-right: 10px;
+    border-radius: 20px;
+}
+
+.fine_table_head th {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border-bottom: none;
+}
 
 /* Book Categories Tab */
 
