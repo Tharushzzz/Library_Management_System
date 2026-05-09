@@ -419,6 +419,14 @@
                 <td>$5.00</td>
                 <td></td>
               </tr>
+              <tr>
+                <td>1</td>
+                <td>john_doe</td>
+                <td>The Great Gatsby</td>
+                <td>2024-05-01</td>
+                <td>$5.00</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
         </div>
