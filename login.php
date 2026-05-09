@@ -49,7 +49,7 @@
 
 
           <!-- Login Form  -->
-          <form id="logIn_form" action="login.php" method="post" class="login_form" >
+          <form id="logIn_form" action="login_check.php" method="post" class="login_form" >
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control" id="username" name="username" required>
@@ -62,7 +62,7 @@
           </form>
 
           <!-- Register Form -->
-          <form id="register_form" action="register.php" method="post" class="register_form" style="display: none;">
+          <form id="register_form" action="register_check.php" method="post" class="register_form" style="display: none;">
 
             <div class="d-flex gap-3">
               <div class="mb-3">
