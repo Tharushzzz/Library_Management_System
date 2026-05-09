@@ -13,36 +13,6 @@
   }
 
   
-
-  
-
-
-  // // Handle update user profile
-  //   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_user'])) {
-  //     $userId = $conn->real_escape_string($_POST['user_id']);
-  //     $firstName = $conn->real_escape_string($_POST['first_name']);
-  //     $lastName = $conn->real_escape_string($_POST['last_name']);
-  //     $username = $conn->real_escape_string($_POST['username']);
-  //     $email = $conn->real_escape_string($_POST['email']);
-  //     $password = $conn->real_escape_string($_POST['password']);
-
-  //     $updateSql = "UPDATE user SET first_name = '$firstName', last_name = '$lastName', username = '$username', email = '$email', password = 'md5($password)' WHERE user_id = '$userId'";
-  //     if ($conn->query($updateSql) === TRUE) {
-  //       $_SESSION['username'] = $username;
-  //       header("Location: index.php");
-  //       exit();
-  //     }
-    // }
-
-    // // Load logged-in user's profile data for Edit Profile form
-    // $selectedUser = null;
-    // if (isset($_SESSION['user_id'])) {
-    //   $currentUserId = $conn->real_escape_string($_SESSION['user_id']);
-    //   $currentUserResult = $conn->query("SELECT user_id, first_name, last_name, username, email, password FROM user WHERE user_id = '$currentUserId' LIMIT 1");
-    //   if ($currentUserResult && $currentUserResult->num_rows === 1) {
-    //     $selectedUser = $currentUserResult->fetch_assoc();
-    //   }
-    // }
   
 
 ?>
@@ -66,6 +36,7 @@
 </head>
 
 <body>
+
   <!-- Nav bar -->
   <div id="menu" class="d-flex align-items-start nav-container">
     
@@ -225,6 +196,18 @@
       <!-- Books-tab -->
       <div class="tab-pane fade" id="v-pills-books" role="tabpanel" aria-labelledby="v-pills-books-tab"
         tabindex="0">
+
+        <?php
+            // Display alert message if set
+            if (isset($_SESSION['alert_message'])) {
+              $type = $_SESSION['alert_type'] ?? 'info';
+              echo '<div class="alert alert-' . htmlspecialchars($type) . '" role="alert">' . htmlspecialchars($_SESSION['alert_message']) . '</div>';
+              unset($_SESSION['alert_message']);
+              unset($_SESSION['alert_type']);
+            }
+          ?>
+
+
         
         <div class="book_users_tab">
           <div class="book_title_box">
@@ -279,18 +262,18 @@
 
          <!-- Books add form -->
         <div class="book_form" id="book_form">
-          <form class="book_add_form">
+          <form action="add_book.php" method="POST" class="book_add_form">
             <div class="mb-3">
               <label for="book_id" class="form-label">Book ID</label>
-              <input type="text" class="form-control form-control-id" id="book_id" placeholder="Enter book ID">
+              <input type="text" class="form-control form-control-id" id="book_id" name="book_id" placeholder="Enter book ID">
             </div>
             <div class="mb-3">
               <label for="book_name" class="form-label">Book Name</label>
-              <input type="text" class="form-control" id="book_name" placeholder="Enter book name">
+              <input type="text" class="form-control" id="book_name" name="book_name" placeholder="Enter book name">
             </div>
              <div class="mb-3">
               <label for="book_category" class="form-label">Category ID</label>
-              <input type="text" class="form-control" id="book_category" placeholder="Enter book category ID">
+              <input type="text" class="form-control" id="book_category" name="book_category" placeholder="Enter book category ID">
             </div>
              <div>
               <button type="submit" class="btn btn-primary">Add Book</button>
@@ -307,6 +290,16 @@
       <!-- categories-tab  -->
       <div class="tab-pane fade" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"
         tabindex="0">
+
+        <!-- Alert Messages -->
+          <?php if (isset($_SESSION['alert_message'])): ?>
+            <div class="container mt-3">
+              <div class="alert alert-<?php echo htmlspecialchars($_SESSION['alert_type'] ?? 'info'); ?>" role="alert">
+                <?php echo htmlspecialchars($_SESSION['alert_message']); ?>
+              </div>
+            </div>
+            <?php unset($_SESSION['alert_message'], $_SESSION['alert_type']); ?>
+          <?php endif; ?>
 
           <div class="categories_users_tab">
           <div class="categories_title_box">
@@ -488,6 +481,20 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
+  <script>
+    function activateTabFromHash() {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      const tabTrigger = document.querySelector(`[data-bs-target="${hash}"]`);
+      if (tabTrigger && window.bootstrap) {
+        bootstrap.Tab.getOrCreateInstance(tabTrigger).show();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', activateTabFromHash);
+    window.addEventListener('hashchange', activateTabFromHash);
+  </script>
 
 </body>
 

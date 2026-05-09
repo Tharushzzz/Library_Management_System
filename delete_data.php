@@ -2,6 +2,9 @@
 <?php
   
   include 'db_config.php';
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
 
     // Handle delete user
   if (isset($_GET['delete_user'])) {
@@ -22,7 +25,18 @@
   // Handle delete category
   if (isset($_GET['delete_category'])) {
     $deleteCategoryId = $conn->real_escape_string($_GET['delete_category']);
-    $conn->query("DELETE FROM bookcategory WHERE category_id = '$deleteCategoryId'");
+    $categoryInUseResult = $conn->query("SELECT COUNT(*) AS total FROM book WHERE category_id = '$deleteCategoryId'");
+    $categoryInUseRow = $categoryInUseResult ? $categoryInUseResult->fetch_assoc() : ['total' => 0];
+
+    if ((int) $categoryInUseRow['total'] > 0) {
+      $_SESSION['alert_type'] = 'danger';
+      $_SESSION['alert_message'] = 'This category cannot be deleted because it is currently assigned to one or more books. Please reassign or delete those books first.';
+    } else {
+      $conn->query("DELETE FROM bookcategory WHERE category_id = '$deleteCategoryId'");
+      $_SESSION['alert_type'] = 'success';
+      $_SESSION['alert_message'] = 'Category deleted successfully.';
+    }
+
     header("Location: index.php#v-pills-categories");
     exit();
   }
