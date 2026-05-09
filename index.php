@@ -149,7 +149,7 @@
                 </thead>
                 <tbody>
                   <?php 
-                    $sql = "SELECT user_id, first_name, last_name, username, email FROM user";
+                    $sql = "SELECT * FROM user";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -203,29 +203,31 @@
                   <tr>
                     <th scope="col">Book ID</th>
                     <th scope="col">Book Name</th>
-                    <th scope="col">Category</th>
+                    <th scope="col">Category ID</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
                  <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                     <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                  </tr>
+                    <?php
+                      $sql2 = "SELECT * FROM book";
+                      $result2 = $conn->query($sql2);
+                      if ($result2->num_rows > 0) {
+                          while($row2 = $result2->fetch_assoc()) {
+                              echo "<tr>
+                                      <td>" . htmlspecialchars($row2['book_id']) . "</td>
+                                      <td>" . htmlspecialchars($row2['book_name']) . "</td>
+                                      <td>" . htmlspecialchars($row2['category_id']) . "</td>
+                                      <td>
+                                        <button class='btn btn-primary btn-sm'>Edit</button>
+                                        <button class='btn btn-danger btn-sm'>Delete</button>
+                                      </td>
+                                    </tr>";
+                          }
+                      } else {
+                          echo "<tr><td colspan='4'>No books found.</td></tr>";
+                      }
+                    ?>
+                
                 </tbody>
               </table>
 
@@ -246,8 +248,8 @@
               <input type="text" class="form-control" id="book_name" placeholder="Enter book name">
             </div>
              <div class="mb-3">
-              <label for="book_category" class="form-label">Category</label>
-              <input type="text" class="form-control" id="book_category" placeholder="Enter book category">
+              <label for="book_category" class="form-label">Category ID</label>
+              <input type="text" class="form-control" id="book_category" placeholder="Enter book category ID">
             </div>
              <div>
               <button type="submit" class="btn btn-primary">Add Book</button>
