@@ -77,6 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
 // Book registration toggle
 
 // Expose a safe global function for inline `onclick` handlers
@@ -99,6 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+
+
 
 
 
