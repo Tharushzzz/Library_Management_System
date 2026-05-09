@@ -99,3 +99,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+
+// Fine users search filter
+const fineSearch = document.getElementById('fineSearch');
+const fineTableBody = document.getElementById('fineTableBody');
+
+if (fineSearch && fineTableBody) {
+    fineSearch.addEventListener('input', () => {
+        const query = fineSearch.value.trim().toLowerCase();
+        const rows = fineTableBody.querySelectorAll('tr');
+
+        rows.forEach(row => {
+            const matches = row.textContent.toLowerCase().includes(query);
+            row.style.display = matches ? '' : 'none';
+        });
+    });
+}
