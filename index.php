@@ -1,3 +1,8 @@
+<?php
+  include 'db_config.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +15,7 @@
   <script src="https://kit.fontawesome.com/d3c42d7fff.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="stylesheet.css">
   <script src="script.js" defer></script>
+
 
   <title>Library Management System</title>
 </head>
