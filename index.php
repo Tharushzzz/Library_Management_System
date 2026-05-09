@@ -2,11 +2,40 @@
   session_start();
   include 'db_config.php';
 
+
+  // Check if user is logged in
   if (!isset($_SESSION['Login']) || $_SESSION['Login'] !== True) {
     // If the user is not logged in, redirect to the login page
     header("Location: login.php");
     exit();
   }
+
+
+  // Handle delete user
+  if (isset($_GET['delete_user'])) {
+    $deleteUserId = $conn->real_escape_string($_GET['delete_user']);
+    $conn->query("DELETE FROM user WHERE user_id = '$deleteUserId'");
+    header("Location: index.php#v-pills-staff");
+    exit();
+  }
+
+  // Handle delete book
+  if (isset($_GET['delete_book'])) {
+    $deleteBookId = $conn->real_escape_string($_GET['delete_book']);
+    $conn->query("DELETE FROM book WHERE book_id = '$deleteBookId'");
+    header("Location: index.php#v-pills-books");
+    exit();
+  }
+
+  // Handle delete category
+  if (isset($_GET['delete_category'])) {
+    $deleteCategoryId = $conn->real_escape_string($_GET['delete_category']);
+    $conn->query("DELETE FROM bookcategory WHERE category_id = '$deleteCategoryId'");
+    header("Location: index.php#v-pills-categories");
+    exit();
+  }
+
+  
 
 ?>
 
@@ -161,15 +190,17 @@
                                     <td>" . htmlspecialchars($row['username']) . "</td>
                                     <td>" . htmlspecialchars($row['email']) . "</td>
                                     <td>
-                                      <button class='btn btn-primary btn-sm'>Edit</button>
-                                      <button class='btn btn-danger btn-sm'>Delete</button>
+                                      <a class='btn btn-danger btn-sm' href='index.php?delete_user=" . urlencode($row['user_id']) . "' onclick=\"return confirm('Delete this user?');\">Delete</a>
                                     </td>
                                   </tr>";
                         }
                     } else {
                         echo "<tr><td colspan='6'>No users found.</td></tr>";
                     }
+
+
                   ?>
+
 
                 </tbody>
               </table>
@@ -219,7 +250,7 @@
                                       <td>" . htmlspecialchars($row2['category_id']) . "</td>
                                       <td>
                                         <button class='btn btn-primary btn-sm'>Edit</button>
-                                        <button class='btn btn-danger btn-sm'>Delete</button>
+                                        <a class='btn btn-danger btn-sm' href='index.php?delete_book=" . urlencode($row2['book_id']) . "' onclick=\"return confirm('Delete this book?');\">Delete</a>
                                       </td>
                                     </tr>";
                           }
@@ -291,24 +322,25 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                  </tr>
+                  <?php
+                    $sql3 = "SELECT * FROM bookcategory";
+                    $result3 = $conn->query($sql3);
+                    if ($result3->num_rows > 0) {
+                        while($row3 = $result3->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . htmlspecialchars($row3['category_id']) . "</td>
+                                    <td>" . htmlspecialchars($row3['category_Name']) . "</td>
+                                    <td>" . htmlspecialchars($row3['date_modified']) . "</td>
+                                    <td>
+                                      <button class='btn btn-primary btn-sm'>Edit</button>
+                                      <a class='btn btn-danger btn-sm' href='index.php?delete_category=" . urlencode($row3['category_id']) . "' onclick=\"return confirm('Delete this category?');\">Delete</a>
+                                    </td>
+                                  </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='4'>No categories found.</td></tr>";
+                    }
+                  ?>
                 </tbody>
               </table>
 
@@ -329,9 +361,9 @@
               <input type="text" class="form-control" id="category_name" placeholder="Enter category name">
             </div>
             <div class="mb-3">
-              <label for="category_description" class="form-label">Description</label>
-              <textarea class="form-control" id="category_description" rows="3"
-                placeholder="Enter category description"></textarea>
+              <label for="category_description" class="form-label">Modified Date</label>
+              <input type="date" class="form-control" id="category_modified_date" rows="3"
+                value="<?php echo date('Y-m-d'); ?>">
             </div>
             <div>
               <button type="submit" class="btn btn-primary">Add Category</button>
@@ -391,12 +423,12 @@
           <p class="pro_form_title">User Information</p>
           <div class="pro_form_title_line"></div>
 
-          <form class="edit_form">
+          <form class="edit_form" method="post" action="index.php">
 
             <!-- User ID -->
             <div class="mb-3">
               <label for="User_ID" class="form-label">User ID</label>
-              <input type="text" class="form-control form-control-id" id="User_ID" disabled>
+              <input type="text" class="form-control form-control-id" id="User_ID" name="user_id" value="<?php echo isset($selectedUser['user_id']) ? htmlspecialchars($selectedUser['user_id']) : ''; ?>" readonly>
               <p class="pro_note">User ID cannot be changed.</p>
             </div>
 
@@ -404,35 +436,35 @@
             <div class="d-flex gap-3 justify-content-between">
               <div class="mb-3 pro_name_box">
                 <label for="first_name" class="form-label ">First Name</label>
-                <input type="text" class="form-control" id="first_name" placeholder="your first name">
+                <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo isset($selectedUser['first_name']) ? htmlspecialchars($selectedUser['first_name']) : ''; ?>" placeholder="your first name">
               </div>
               <div class="mb-3 pro_name_box">
                 <label for="last_name" class="form-label ">Last Name</label>
-                <input type="text" class="form-control" id="last_name" placeholder="your last name">
+                <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo isset($selectedUser['last_name']) ? htmlspecialchars($selectedUser['last_name']) : ''; ?>" placeholder="your last name">
               </div>
             </div>
 
             <!-- Username -->
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="your username">
+              <input type="text" class="form-control" id="username" name="username" value="<?php echo isset($selectedUser['username']) ? htmlspecialchars($selectedUser['username']) : ''; ?>" placeholder="your username">
             </div>
 
             <!-- Email -->
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="your email">
+              <input type="email" class="form-control" id="email" name="email" value="<?php echo isset($selectedUser['email']) ? htmlspecialchars($selectedUser['email']) : ''; ?>" placeholder="your email">
             </div>
 
             <!-- Password -->
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control form-control-id" id="password" placeholder="your new password">
+              <input type="password" class="form-control form-control-id" id="password" name="password" value="<?php echo isset($selectedUser['password']) ? htmlspecialchars($selectedUser['password']) : ''; ?>" placeholder="your new password">
               <p class="pro_note">Must be more than 8 characters.</p>
             </div>
 
             <!-- Save Changes Button -->
-            <button type="submit" class="btn btn-primary pro_save_btn">Save Changes</button>
+            <button type="submit" name="update_user" class="btn btn-primary pro_save_btn">Save Changes</button>
           </form>
         </div>
 
