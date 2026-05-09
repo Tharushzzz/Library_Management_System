@@ -354,18 +354,18 @@
 
         <!-- Books-categories add form -->
         <div class="book_categories_form" id="book_categories_form">
-          <form class="categories_add_form">
-            <div class="mb-3">
+          <form class="categories_add_form" action="add_category.php" method="POST">
+             <div class="mb-3">
               <label for="category_id" class="form-label">Category ID</label>
-              <input type="text" class="form-control form-control-id" id="category_id" placeholder="Enter category ID">
+              <input type="text" class="form-control form-control-id" id="category_id" name="category_id" placeholder="Enter category ID">
             </div>
             <div class="mb-3">
               <label for="category_name" class="form-label">Category Name</label>
-              <input type="text" class="form-control" id="category_name" placeholder="Enter category name">
+              <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter category name">
             </div>
             <div class="mb-3">
               <label for="category_description" class="form-label">Modified Date</label>
-              <input type="date" class="form-control" id="category_modified_date" rows="3"
+              <input type="date" class="form-control" id="category_modified_date" name="category_modified_date" rows="3"
                 value="<?php echo date('Y-m-d'); ?>">
             </div>
             <div>
