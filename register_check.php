@@ -7,7 +7,7 @@
         $FName = $_POST['fname'];
         $LName = $_POST['lname'];
         $Email = $_POST['email'];
-        $Password = $_POST['new_password'];
+        $Password = md5($_POST['new_password']);
 
         $UidFristChar = $Uid[0];
 
