@@ -1,3 +1,9 @@
+<?php
+  include 'db_config.php';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +37,8 @@
             <button class="btn btn-secondary w-100 " id="RegisterBtn">Register</button>
           </div>
 
+
+          <!-- Login Form  -->
           <form id="logIn_form" action="login.php" method="post" class="login_form" >
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
@@ -43,6 +51,7 @@
             <button type="submit" class="btn btn-primary w-100">Login</button>
           </form>
 
+          <!-- Register Form -->
           <form id="register_form" action="register.php" method="post" class="register_form" style="display: none;">
 
             <div class="d-flex gap-3">
