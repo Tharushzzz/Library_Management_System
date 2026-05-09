@@ -171,7 +171,77 @@
       <div class="tab-pane fade" id="v-pills-books" role="tabpanel" aria-labelledby="v-pills-books-tab"
         tabindex="0">
         
-        
+        <div class="book_users_tab">
+          <div class="book_title_box">
+            <span class="book_title">Book Management </span>
+            <button class="btn btn-success btn-md book_add_btn" id="book_add_btn" onclick="toggleBookForm()">Add Book</button>
+          </div>
+
+          <div class="book_content">
+            <div class="book_content_title_box">
+              <div class="book_content_title">Book Registration</div>
+              <div class="book_content_title_line"></div>
+          </div>
+
+           <div class="book_tab_head">
+              <table class="table book_table">
+                <thead class="book_table_head">
+                  <tr>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                 <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                     <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+
+         <!-- Books add form -->
+        <div class="book_form" id="book_form">
+          <form class="book_add_form">
+            <div class="mb-3">
+              <label for="book_id" class="form-label">Book ID</label>
+              <input type="text" class="form-control form-control-id" id="book_id" placeholder="Enter book ID">
+            </div>
+            <div class="mb-3">
+              <label for="book_name" class="form-label">Book Name</label>
+              <input type="text" class="form-control" id="book_name" placeholder="Enter book name">
+            </div>
+             <div class="mb-3">
+              <label for="book_category" class="form-label">Category</label>
+              <input type="text" class="form-control" id="book_category" placeholder="Enter book category">
+            </div>
+             <div>
+              <button type="submit" class="btn btn-primary">Add Book</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleBookForm()">Cancel</button>
+            </div>
+            
+          </form>
+        </div>
 
       </div>
 
