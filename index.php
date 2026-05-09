@@ -148,31 +148,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>mark@example.com</td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>jacob@example.com</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>@social</td>
-                    <td>jacob@example.com</td>
-                  </tr>
+                  <?php 
+                    $sql = "SELECT user_id, first_name, last_name, username, email FROM user";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . htmlspecialchars($row['user_id']) . "</td>
+                                    <td>" . htmlspecialchars($row['first_name']) . "</td>
+                                    <td>" . htmlspecialchars($row['last_name']) . "</td>
+                                    <td>" . htmlspecialchars($row['username']) . "</td>
+                                    <td>" . htmlspecialchars($row['email']) . "</td>
+                                    <td>
+                                      <button class='btn btn-primary btn-sm'>Edit</button>
+                                      <button class='btn btn-danger btn-sm'>Delete</button>
+                                    </td>
+                                  </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='6'>No users found.</td></tr>";
+                    }
+                  ?>
+
                 </tbody>
               </table>
 
