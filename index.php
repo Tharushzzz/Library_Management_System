@@ -1,5 +1,13 @@
 <?php
+  session_start();
   include 'db_config.php';
+
+  if (!isset($_SESSION['Login']) || $_SESSION['Login'] !== True) {
+    // If the user is not logged in, redirect to the login page
+    header("Location: login.php");
+    exit();
+  }
+
 ?>
 
 
@@ -87,7 +95,7 @@
 
 
       <div class="nav_bottom">
-        <p class="welcome d-none d-md-block">Welcome,<spam>User</spam>
+        <p class="welcome d-none d-md-block">Welcome, <spam><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'User'; ?></spam>
         </p>
 
         <!-- Profile edit -->
@@ -99,10 +107,12 @@
 
 
         <!-- Logout-btn -->
-        <button type="button" class="btn btn-danger logout_btn">
-          <i class="fa-solid fa-arrow-right-from-bracket" style="color: rgb(255, 255, 255);"></i>
-          Logout
-        </button>
+        <form action="login_check.php" method="get" style="width: 100%; display: flex; justify-content: center;">
+          <button type="submit" class="btn btn-danger logout_btn" name="Logout">
+            <i class="fa-solid fa-arrow-right-from-bracket" style="color: rgb(255, 255, 255);"></i>
+            Logout
+          </button>
+        </form>
       </div>
 
 

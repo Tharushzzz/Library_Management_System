@@ -72,6 +72,12 @@ body {
     margin: 0;
 }
 
+.logout_submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .logout_btn{
     font-weight: 500;
     font-size: 16px;
