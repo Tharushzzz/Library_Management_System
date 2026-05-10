@@ -41,4 +41,16 @@
     exit();
   }
 
+
+  // Handle delete member
+  if (isset($_GET['delete_member'])) {
+    $deleteMemberId = $conn->real_escape_string($_GET['delete_member']);
+    $conn->query("DELETE FROM member WHERE member_id = '$deleteMemberId'");
+    header("Location: index.php#v-pills-members");
+    exit();
+  }
+
+
+
+
   ?>
