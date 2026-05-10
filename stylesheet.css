@@ -657,4 +657,12 @@ body {
     margin-bottom: 20px;
 }
 
+.member_tab_head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+
 
