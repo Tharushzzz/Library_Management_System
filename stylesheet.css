@@ -696,4 +696,8 @@ body {
     z-index: 100;
 }
 
+.member_form.active{
+    display: flex;
+}
+
 
