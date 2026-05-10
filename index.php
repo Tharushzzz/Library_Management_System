@@ -417,6 +417,18 @@
                       <button class="btn btn-danger btn-sm">Delete</button>
                     </td>
                   </tr>
+                   <tr>
+                    <td>M002</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>1985-07-15</td>
+                    <td>jacob.thornton@example.com</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+
 
 
 
