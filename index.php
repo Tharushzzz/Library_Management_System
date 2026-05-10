@@ -406,28 +406,27 @@
                   </tr>
                 </thead>
                  <tbody>
-                  <tr>
-                    <td>M001</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>1990-01-01</td>
-                    <td>mark.otto@example.com</td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                  </tr>
-                   <tr>
-                    <td>M002</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>1985-07-15</td>
-                    <td>jacob.thornton@example.com</td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                  </tr>
+                    <?php
+                      $sql4 = "SELECT * FROM member";
+                      $result4 = $conn->query($sql4);
+                      if ($result4->num_rows > 0) {
+                          while($row4 = $result4->fetch_assoc()) {
+                              echo "<tr>
+                                      <td>" . htmlspecialchars($row4['member_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['first_name']) . "</td>
+                                      <td>" . htmlspecialchars($row4['last_name']) . "</td>
+                                      <td>" . htmlspecialchars($row4['birthday']) . "</td>
+                                      <td>" . htmlspecialchars($row4['email']) . "</td>
+                                      <td>
+                                        <button class='btn btn-primary btn-sm' onclick=\"toggleMemberForm()\">Edit</button>
+                                        <a class='btn btn-danger btn-sm' href='index.php?delete_member=" . urlencode($row4['member_id']) . "' onclick=\"return confirm('Delete this member?');\">Delete</a>
+                                      </td>
+                                    </tr>";
+                          }
+                      } else {
+                          echo "<tr><td colspan='6'>No members found.</td></tr>";
+                      }
+                  ?>
                    </tbody>
               </table>
 
