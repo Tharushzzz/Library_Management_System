@@ -12,7 +12,7 @@
     exit();
   }
 
-  
+  // alert will be displayed after page loads
   
 
 ?>
@@ -30,6 +30,7 @@
   <script src="https://kit.fontawesome.com/d3c42d7fff.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="stylesheet.css">
   <script src="script.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
   <title>Library Management System</title>
@@ -437,26 +438,26 @@
 
          <!-- Member add form -->
           <div class="member_form" id="member_form">
-          <form class="member_add_form">
+          <form class="member_add_form" action="add_member.php" method="POST">
             <div class="mb-3">
                <label for="member_id" class="form-label">Member ID</label>
-              <input type="text" class="form-control form-control-id" id="member_id" placeholder="Enter member ID">
+              <input type="text" class="form-control form-control-id" id="member_id" placeholder="Enter member ID" name="member_id">
             </div>
             <div class="mb-3">
               <label for="first_name" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="first_name" placeholder="Enter first name">
+              <input type="text" class="form-control" id="first_name" placeholder="Enter first name" name="first_name">
             </div>
             <div class="mb-3">
               <label for="last_name" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="last_name" placeholder="Enter last name">
+              <input type="text" class="form-control" id="last_name" placeholder="Enter last name" name="last_name">
             </div>
             <div class="mb-3">
               <label for="birth_date" class="form-label">Birth Date</label>
-              <input type="date" class="form-control" id="birth_date">
+              <input type="date" class="form-control" id="birth_date" name="birth_date" value="<?php echo date('Y-m-d'); ?>">
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email">
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
             </div>
              <div>
               <button type="submit" class="btn btn-primary">Add Member</button>
@@ -596,6 +597,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
+
+  <!-- Alert Script -->
+  <?php
+    if(isset($_SESSION['alert'])){
+      echo $_SESSION['alert'];
+      unset($_SESSION['alert']);
+    }
+  ?>
   
 
 </body>

@@ -1,16 +1,19 @@
 <?php
+
     include 'db_config.php';
     if (session_status() === PHP_SESSION_NONE) {
     session_start();
     }
 
+    
+    $memberId = $_POST['member_id'];
+    $firstName = $_POST['first_name'];
+    $lastName = $_POST['last_name'];
+    $birthday = $_POST['birth_date'];
+    $email = $_POST['email'];
 
-    $categoryId = $_POST['category_id'];
-    $categoryName = $_POST['category_name'];
-    $modifiedDate = $_POST['category_modified_date'];
 
-
-    $sql = "INSERT INTO bookcategory (category_id, category_Name, date_modified) VALUES ('$categoryId', '$categoryName', '$modifiedDate')";
+    $sql = "INSERT INTO member (member_id, first_name, last_name, birthday, email) VALUES ('$memberId', '$firstName', '$lastName', '$birthday', '$email')";
     if ($conn->query($sql) === TRUE) {
         $_SESSION['alert'] = '<script>
                                 const Toast = Swal.mixin({
@@ -26,7 +29,7 @@
                                 });
                                 Toast.fire({
                                 icon: "success",
-                                title: "Category added successfully"
+                                title: "Member added successfully"
                                 });
                                 </script>';
     } else {
@@ -44,10 +47,13 @@
                                 });
                                 Toast.fire({
                                 icon: "error",
-                                title: "Error adding category"
+                                title: "Error adding member"
                                 });
                                 </script>';
     }
-    header("Location: index.php#v-pills-categories");
+
+    header("Location: index.php#v-pills-members");
     exit();
 ?>
+
+    

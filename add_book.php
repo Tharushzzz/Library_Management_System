@@ -1,5 +1,8 @@
 <?php
     include 'db_config.php';
+    if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+    }
 
 
     $bookId = $_POST['book_id'];
@@ -9,11 +12,41 @@
 
     $sql = "INSERT INTO book (book_id, book_name, category_id) VALUES ('$bookId', '$bookName', '$categoryId')";
     if ($conn->query($sql) === TRUE) {
-        $_SESSION['alert_message'] = 'Book added successfully.';
-        $_SESSION['alert_type'] = 'success';
+        $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "Book added successfully"
+                                });
+                                </script>';
     } else {
-        $_SESSION['alert_message'] = 'Error adding book.';
-        $_SESSION['alert_type'] = 'danger';
+        $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "error",
+                                title: "Book added failed"
+                                });
+                                </script>';
     }
     header("Location: index.php#v-pills-books");
     exit();

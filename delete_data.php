@@ -11,6 +11,23 @@
     $deleteUserId = $conn->real_escape_string($_GET['delete_user']);
     $conn->query("DELETE FROM user WHERE user_id = '$deleteUserId'");
     header("Location: index.php#v-pills-staff");
+    $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "User deleted successfully"
+                                });
+                                </script>';
     exit();
   }
 
@@ -19,6 +36,23 @@
     $deleteBookId = $conn->real_escape_string($_GET['delete_book']);
     $conn->query("DELETE FROM book WHERE book_id = '$deleteBookId'");
     header("Location: index.php#v-pills-books");
+    $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "Book deleted successfully"
+                                });
+                                </script>';
     exit();
   }
 
@@ -29,12 +63,43 @@
     $categoryInUseRow = $categoryInUseResult ? $categoryInUseResult->fetch_assoc() : ['total' => 0];
 
     if ((int) $categoryInUseRow['total'] > 0) {
-      $_SESSION['alert_type'] = 'danger';
-      $_SESSION['alert_message'] = 'This category cannot be deleted because it is currently assigned to one or more books. Please reassign or delete those books first.';
+      $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "Category cannot be deleted because it is currently in use by one or more books."
+                                });
+                                </script>';
+
     } else {
       $conn->query("DELETE FROM bookcategory WHERE category_id = '$deleteCategoryId'");
-      $_SESSION['alert_type'] = 'success';
-      $_SESSION['alert_message'] = 'Category deleted successfully.';
+      $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "Category deleted successfully"
+                                });
+                                </script>>';
     }
 
     header("Location: index.php#v-pills-categories");
@@ -47,6 +112,23 @@
     $deleteMemberId = $conn->real_escape_string($_GET['delete_member']);
     $conn->query("DELETE FROM member WHERE member_id = '$deleteMemberId'");
     header("Location: index.php#v-pills-members");
+    $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "Member deleted successfully"
+                                });
+                                </script>';
     exit();
   }
 

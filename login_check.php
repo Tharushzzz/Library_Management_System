@@ -1,6 +1,9 @@
 <?php
     session_start();
     include 'db_config.php';
+    if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+    }
 
     //  Logout function
     if (isset($_GET['Logout'])) {
@@ -29,6 +32,23 @@
             $_SESSION['username'] = $user['username'];
             $_SESSION['user_id'] = $user['user_id'];
             header("Location: index.php");
+            $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "Login successful"
+                                });
+                                </script>';
             exit();
         } else {
             $_SESSION['alert_type'] = 'danger';
