@@ -443,6 +443,23 @@
                <label for="member_id" class="form-label">Member ID</label>
               <input type="text" class="form-control form-control-id" id="member_id" placeholder="Enter member ID">
             </div>
+            <div class="mb-3">
+              <label for="first_name" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="first_name" placeholder="Enter first name">
+            </div>
+            <div class="mb-3">
+              <label for="last_name" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="last_name" placeholder="Enter last name">
+            </div>
+            <div class="mb-3">
+              <label for="birth_date" class="form-label">Birth Date</label>
+              <input type="date" class="form-control" id="birth_date">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+
 
 
 
