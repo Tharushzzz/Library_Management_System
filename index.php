@@ -501,31 +501,37 @@
           <table class="table table-striped fine_table">
             <thead class="fine_table_head">
               <tr>
-                <th scope="col">User ID</th>
-                <th scope="col">Username</th>
-                <th scope="col">Book Title</th>
-                <th scope="col">Due Date</th>
+                <th scope="col">Fine ID</th>
+                <th scope="col">Book ID</th>
+                <th scope="col">Member ID</th>
                 <th scope="col">Fine Amount</th>
+                <th scope="col">Fine_Date</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody id="fineTableBody">
-              <tr>
-                <td>1</td>
-                <td>john_doe</td>
-                <td>The Great Gatsby</td>
-                <td>2024-05-01</td>
-                <td>$5.00</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>john_doe</td>
-                <td>The Great Gatsby</td>
-                <td>2024-05-01</td>
-                <td>$5.00</td>
-                <td></td>
-              </tr>
+              <?php
+                $sql6 = "SELECT * FROM fine";
+                $result6 = $conn->query($sql6);
+
+                if ($result6->num_rows > 0) {
+                    while($row6 = $result6->fetch_assoc()) {
+                        echo "<tr>
+                                <td>" . htmlspecialchars($row6['fine_id']) . "</td>
+                                <td>" . htmlspecialchars($row6['book_id']) . "</td>
+                                <td>" . htmlspecialchars($row6['member_id']) . "</td>
+                                <td>" . htmlspecialchars($row6['fine_amount']) . "</td>
+                                <td>" . htmlspecialchars($row6['fine_date_modified']) . "</td>
+                                <td>
+                                  <button class='btn btn-success btn-sm'>Edit</button>
+                                  <a class='btn btn-danger btn-sm' href='index.php?delete_fine=" . urlencode($row6['fine_id']) . "' onclick=\"return confirm('Delete this fine record?');\">Delete</a>
+                                </td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7'>No fine records found.</td></tr>";
+                }
+              ?>
             </tbody>
           </table>
         </div>
