@@ -664,5 +664,10 @@ body {
     padding: 0 25px;
 }
 
+.member_tab_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 15px;
+}
 
 
