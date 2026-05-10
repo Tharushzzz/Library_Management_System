@@ -135,4 +135,30 @@
 
 
 
+  // Handle delete fine
+  if (isset($_GET['delete_fine'])) {
+    $deleteFineId = $conn->real_escape_string($_GET['delete_fine']);
+    $conn->query("DELETE FROM fine WHERE fine_id = '$deleteFineId'");
+    header("Location: index.php#v-pills-fine");
+    $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "Fine deleted successfully"
+                                });
+                                </script>';
+    exit();
+  }
+
+
   ?>
