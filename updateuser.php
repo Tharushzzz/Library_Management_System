@@ -15,6 +15,23 @@
       if ($conn->query($updateSql) === TRUE) {
         $_SESSION['username'] = $username;
         header("Location: index.php");
+        $_SESSION['alert'] = '<script>
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                                });
+                                Toast.fire({
+                                icon: "success",
+                                title: "Profile updated successfully"
+                                });
+                                </script>';
         exit();
       } else {
         $_SESSION['alert_type'] = 'danger';
