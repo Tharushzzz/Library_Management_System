@@ -398,6 +398,20 @@
               <div class="borrow_content_title">Book Borrows Details</div>
               <div class="borrow_content_title_line"></div>
             </div>
+            <div class="borrow_tab_head">
+              <table class="table borrow_table">
+                <thead class="borrow_table_head">
+                  <tr>
+                    <th scope="col">Borrow ID</th>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Member ID</th>
+                    <th scope="col">Borrow Status</th>
+                    <th scope="col">Borrow Date</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+              </table> 
+            </div>   
           </div>  
         </div>
 
