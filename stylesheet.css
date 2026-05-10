@@ -604,3 +604,18 @@ body {
 .book_form.active{
     display: flex;
 } 
+
+/* Member Tab */
+
+#v-pills-Members{
+    position: relative;
+}
+
+.member_users_tab{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+

@@ -463,6 +463,10 @@
               <button type="submit" class="btn btn-primary">Add Member</button>
               <button type="button" class="btn btn-secondary" onclick="toggleMemberForm()">Cancel</button>
             </div>
+             </form>
+        </div>
+
+
 
 
 
