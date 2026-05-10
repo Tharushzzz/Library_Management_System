@@ -132,16 +132,6 @@
     <!-- menu-tabs -->
     <div class="tab-content" id="v-pills-tabContent">
 
-      <!-- Alert Messages -->
-          <?php if (isset($_SESSION['alert_message'])): ?>
-            <div class="container mt-3">
-              <div class="alert alert-<?php echo htmlspecialchars($_SESSION['alert_type'] ?? 'info'); ?>" role="alert">
-                <?php echo htmlspecialchars($_SESSION['alert_message']); ?>
-              </div>
-            </div>
-            <?php unset($_SESSION['alert_message'], $_SESSION['alert_type']); ?>
-          <?php endif; ?>
-
       <!-- Staff-Users-tab -->
       <div class="tab-pane fade show active" id="v-pills-staff" role="tabpanel" aria-labelledby="v-pills-staff-tab"
         tabindex="0">
@@ -206,18 +196,6 @@
       <!-- Books-tab -->
       <div class="tab-pane fade" id="v-pills-books" role="tabpanel" aria-labelledby="v-pills-books-tab"
         tabindex="0">
-
-        <?php
-            // Display alert message if set
-            if (isset($_SESSION['alert_message'])) {
-              $type = $_SESSION['alert_type'] ?? 'info';
-              echo '<div class="alert alert-' . htmlspecialchars($type) . '" role="alert">' . htmlspecialchars($_SESSION['alert_message']) . '</div>';
-              unset($_SESSION['alert_message']);
-              unset($_SESSION['alert_type']);
-            }
-          ?>
-
-
         
         <div class="book_users_tab">
           <div class="book_title_box">
@@ -283,7 +261,18 @@
             </div>
              <div class="mb-3">
               <label for="book_category" class="form-label">Category ID</label>
-              <input type="text" class="form-control" id="book_category" name="book_category" placeholder="Enter book category ID">
+              <select class="form-control" id="book_category" name="book_category">
+                <option value="">Select a category</option>
+                <?php
+                  $sql = "SELECT * FROM bookcategory";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                      echo "<option value='" . htmlspecialchars($row['category_id']) . "'>" . htmlspecialchars($row['category_id']) . "</option>";
+                    }
+                  }
+                ?>
+              </select>
             </div>
              <div>
               <button type="submit" class="btn btn-primary">Add Book</button>
@@ -320,7 +309,7 @@
                   <tr>
                     <th scope="col">Category ID</th>
                     <th scope="col">Category Name</th>
-                    <th scope="col">Description</th>
+                    <th scope="col">Modified Date</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -544,11 +533,33 @@
             </div>
             <div class="mb-3">
               <label for="book_id" class="form-label">Book ID</label>
-              <input type="text" class="form-control" id="book_id" placeholder="Enter book ID" name="book_id">
+              <select class="form-control" id="book_id" name="book_id">
+                <option value="">Select a book</option>
+                <?php
+                  $sql = "SELECT * FROM book";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                      echo "<option value='" . htmlspecialchars($row['book_id']) . "'>" . htmlspecialchars($row['book_id']) . "</option>";
+                    }
+                  }
+                ?>
+              </select>
             </div>
             <div class="mb-3">
               <label for="member_id" class="form-label">Member ID</label>
-              <input type="text" class="form-control" id="member_id" placeholder="Enter member ID" name="member_id">
+              <select class="form-control" id="member_id" name="member_id">
+                <option value="">Select a member</option>
+                <?php
+                  $sql = "SELECT * FROM member";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                      echo "<option value='" . htmlspecialchars($row['member_id']) . "'>" . htmlspecialchars($row['member_id']) . "</option>";
+                    }
+                  }
+                ?>
+              </select>
             </div>
             <div class="mb-3">
               <label for="amount" class="form-label">Amount</label>
