@@ -388,12 +388,18 @@
 
       <!-- Borrow-Books-tab -->
       <div class="tab-pane fade" id="v-pills-borrow" role="tabpanel" aria-labelledby="v-pills-borrow-tab" tabindex="0">
-         <div class="borrow_title_box">
+       <div class="borrow_users_tab">
+          <div class="borrow_title_box">
             <span class="borrow_title">Book Borrow Management </span>
             <button class="btn btn-success btn-md borrow_add_btn" id="borrow_add_btn" onclick="toggleBorrowForm()">Add Borrow</button>
           </div>
-          
-
+          <div class="borrow_content">
+            <div class="borrow_content_title_box">
+              <div class="borrow_content_title">Book Borrows Details</div>
+              <div class="borrow_content_title_line"></div>
+            </div>
+          </div>  
+        </div>
 
       </div>
 

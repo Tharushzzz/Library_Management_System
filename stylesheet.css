@@ -612,10 +612,32 @@ body {
     position: relative;
 }
 
+.borrow_users_tab{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
 .borrow_title{
     color: #1e293b;
     font-weight: 600;
     font-size: 25px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.borrow_content{
+    height: 80vh;
+    width: 98%;
+    background-color: #f1f5f9;
+    border-radius: 20px;
+}
+
+.borrow_content_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 20px;
     margin-top: 10px;
     margin-left: 15px;
 }
@@ -626,4 +648,12 @@ body {
     align-items: center;
     padding-top: 20px;
     padding-right: 20px;
+}
+
+.borrow_content_title_line{
+    width: 100%;
+    height: 1px;
+    background-color: #bdc6ce;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
