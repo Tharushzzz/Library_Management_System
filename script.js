@@ -176,3 +176,10 @@ const memberstab = document.getElementById('v-pills-Members');
 // Initialize button listeners after DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     const memberAddBtn = document.querySelector('.member_add_btn');
+    if (memberAddBtn) {
+        memberAddBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMemberForm();
+        });
+    }
+
