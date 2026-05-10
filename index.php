@@ -413,6 +413,11 @@
                     <td>1990-01-01</td>
                     <td>mark.otto@example.com</td>
                     <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+
 
 
         
