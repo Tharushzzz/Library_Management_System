@@ -397,6 +397,15 @@
               <table class="table member_table">
                 <thead class="member_table_head">
                   <tr>
+                     <th scope="col">Member ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Birth Date</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+
         
           
 
