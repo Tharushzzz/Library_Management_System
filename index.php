@@ -12,7 +12,6 @@
     exit();
   }
 
-  // alert will be displayed after page loads
   
 
 ?>
