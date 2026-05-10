@@ -82,10 +82,42 @@ document.addEventListener('DOMContentLoaded', () => {
 // Book registration toggle
 
 // Expose a safe global function for inline `onclick` handlers
-function toggleBookForm() {
+function toggleBookForm(mode = 'toggle') {
     const form = document.getElementById('book_form');
     if (!form) return;
+
+    const addButton = document.getElementById('book_submit_add_btn');
+    const updateButton = document.querySelector('button[name="edit_book"]');
+
+    const setAddMode = () => {
+        if (addButton) addButton.style.display = 'inline-block';
+        if (updateButton) updateButton.style.display = 'none';
+    };
+
+    const setEditMode = () => {
+        if (addButton) addButton.style.display = 'none';
+        if (updateButton) updateButton.style.display = 'inline-block';
+    };
+
+    if (mode === 'add') {
+        form.classList.add('active');
+        setAddMode();
+        return;
+    }
+
+    if (mode === 'edit') {
+        form.classList.add('active');
+        setEditMode();
+        return;
+    }
+
+    const isOpen = form.classList.contains('active');
     form.classList.toggle('active');
+    if (isOpen) {
+        setAddMode();
+    } else {
+        setAddMode();
+    }
 }
 window.toggleBookForm = toggleBookForm;
 
@@ -95,17 +127,25 @@ const booktab = document.getElementById('v-pills-books');
 document.addEventListener('DOMContentLoaded', () => {
     const bookAddBtn = document.querySelector('.book_add_btn');
     const bookEditBtns = document.querySelectorAll('.book_edit_btn');
+    const updateButton = document.querySelector('button[name="edit_book"]');
+    const addButton = document.getElementById('book_submit_add_btn');
+    if (updateButton) {
+        updateButton.style.display = 'none';
+    }
+    if (addButton) {
+        addButton.style.display = 'inline-block';
+    }
     if (bookAddBtn) {
         bookAddBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            toggleBookForm();
+            toggleBookForm('add');
         });
     }
     if (bookEditBtns) {
         bookEditBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                toggleBookForm();
+                toggleBookForm('edit');
             });
         });
     }

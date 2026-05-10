@@ -3,6 +3,7 @@
   include 'db_config.php';
   include 'updateuser.php';
   include 'delete_data.php';
+  include 'edite.php';
 
 
   // Check if user is logged in
@@ -11,7 +12,7 @@
     header("Location: login.php");
     exit();
   }
-
+  
   
 
 ?>
@@ -200,7 +201,7 @@
         <div class="book_users_tab">
           <div class="book_title_box">
             <span class="book_title">Book Management </span>
-            <button class="btn btn-success btn-md book_add_btn" id="book_add_btn" onclick="toggleBookForm()">Add Book</button>
+            <button class="btn btn-success btn-md book_add_btn" id="book_add_btn" onclick="toggleBookForm('add')">Add Book</button>
           </div>
 
           <div class="book_content">
@@ -230,7 +231,7 @@
                                       <td>" . htmlspecialchars($row2['book_name']) . "</td>
                                       <td>" . htmlspecialchars($row2['category_id']) . "</td>
                                       <td>
-                                        <button class='btn btn-primary btn-sm' onclick=\"toggleBookForm()\">Edit</button>
+                                        <button class='btn btn-primary btn-sm book_edit_btn' onclick=\"toggleBookForm('edit')\">Edit</button>
                                         <a class='btn btn-danger btn-sm' href='index.php?delete_book=" . urlencode($row2['book_id']) . "' onclick=\"return confirm('Delete this book?');\">Delete</a>
                                       </td>
                                     </tr>";
@@ -253,11 +254,11 @@
           <form action="add_book.php" method="POST" class="book_add_form">
             <div class="mb-3">
               <label for="book_id" class="form-label">Book ID</label>
-              <input type="text" class="form-control form-control-id" id="book_id" name="book_id" placeholder="Enter book ID">
+              <input type="text" class="form-control form-control-id" id="book_id" name="book_id" value="<?php echo isset($selectedBook['book_id']) ? htmlspecialchars($selectedBook['book_id']) : ''; ?>" placeholder="Enter book ID">
             </div>
             <div class="mb-3">
               <label for="book_name" class="form-label">Book Name</label>
-              <input type="text" class="form-control" id="book_name" name="book_name" placeholder="Enter book name">
+              <input type="text" class="form-control" id="book_name" name="book_name" value="<?php echo isset($selectedBook['book_name']) ? htmlspecialchars($selectedBook['book_name']) : ''; ?>" placeholder="Enter book name">
             </div>
              <div class="mb-3">
               <label for="book_category" class="form-label">Category ID</label>
@@ -268,14 +269,16 @@
                   $result = $conn->query($sql);
                   if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                      echo "<option value='" . htmlspecialchars($row['category_id']) . "'>" . htmlspecialchars($row['category_id']) . "</option>";
-                    }
+                      $selected = (isset($selectedBook['category_id']) && $selectedBook['category_id'] == $row['category_id']) ? 'selected' : '';
+                      echo "<option value='" . htmlspecialchars($row['category_id']) . "' $selected>" . htmlspecialchars($row['category_id']) . "</option>";
+                      }
                   }
                 ?>
               </select>
             </div>
              <div>
-              <button type="submit" class="btn btn-primary">Add Book</button>
+              <button type="submit" class="btn btn-primary" id="book_submit_add_btn">Add Book</button>
+              <button type="submit" class="btn btn-primary" name="edit_book" style="display:none;">Update Book</button>
               <button type="button" class="btn btn-secondary" onclick="toggleBookForm()">Cancel</button>
             </div>
             
@@ -650,6 +653,7 @@
       unset($_SESSION['alert']);
     }
   ?>
+  
   
 
 </body>
