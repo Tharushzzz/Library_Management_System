@@ -169,3 +169,4 @@ function toggleMemberForm() {
     if (!form) return;
     form.classList.toggle('active');
 }
+window.toggleMemberForm = toggleMemberForm;
