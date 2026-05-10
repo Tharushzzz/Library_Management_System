@@ -392,6 +392,11 @@
               <div class="member_content_title">Members</div>
               <div class="member_content_title_line"></div>
             </div>
+
+            <div class="member_tab_head">
+              <table class="table member_table">
+                <thead class="member_table_head">
+                  <tr>
         
           
 
