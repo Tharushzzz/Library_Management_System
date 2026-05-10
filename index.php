@@ -428,6 +428,21 @@
                       <button class="btn btn-danger btn-sm">Delete</button>
                     </td>
                   </tr>
+                   </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+
+         <!-- Member add form -->
+          <div class="member_form" id="member_form">
+          <form class="member_add_form">
+            <div class="mb-3">
+
+
+
 
 
 
