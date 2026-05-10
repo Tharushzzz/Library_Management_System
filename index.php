@@ -381,6 +381,11 @@
       <!-- Members-tab  -->
       <div class="tab-pane fade" id="v-pills-Members" role="tabpanel" aria-labelledby="v-pills-Members-tab"
         tabindex="0">
+        <div class="member_users_tab">
+          <div class="member_title_box">
+            <span class="member_title">Member Management</span>
+            <button class="btn btn-success btn-md member_add_btn" id="member_add_btn" onclick="toggleMemberForm()">Add Member</button>
+          </div>
         
           
 
