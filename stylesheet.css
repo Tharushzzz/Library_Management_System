@@ -641,4 +641,12 @@ body {
     margin-left: 15px;
 }
 
+.member_title_box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
 
