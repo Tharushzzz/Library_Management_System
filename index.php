@@ -459,6 +459,11 @@
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" placeholder="Enter email">
             </div>
+             <div>
+              <button type="submit" class="btn btn-primary">Add Member</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleMemberForm()">Cancel</button>
+            </div>
+
 
 
 
