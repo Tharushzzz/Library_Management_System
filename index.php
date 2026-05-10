@@ -463,22 +463,12 @@
               <button type="button" class="btn btn-secondary" onclick="toggleMemberForm()">Cancel</button>
             </div>
              </form>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-        
-          
+        </div>    
 
       </div>
+
+
+
 
       <!-- Borrow-Books-tab -->
       <div class="tab-pane fade" id="v-pills-borrow" role="tabpanel" aria-labelledby="v-pills-borrow-tab" tabindex="0">
@@ -490,50 +480,89 @@
 
       <!-- Fine-Users-tab -->
       <div class="tab-pane fade" id="v-pills-fine" role="tabpanel" aria-labelledby="v-pills-fine-tab" tabindex="0">
-        <div class="fine_cont">
-          <h1 class="fine_title">Fine Management</h1>
-          <div class="fine_title_line"></div>
-        </div>
-        <div class="fine_search_wrap">
-          <input type="search" id="fineSearch" class="form-control fine_search" placeholder="Search fine users by ID, username, book, or date">
-        </div>
-        <div class="fine_table_cont">
-          <table class="table table-striped fine_table">
-            <thead class="fine_table_head">
-              <tr>
-                <th scope="col">Fine ID</th>
-                <th scope="col">Book ID</th>
-                <th scope="col">Member ID</th>
-                <th scope="col">Fine Amount</th>
-                <th scope="col">Fine_Date</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody id="fineTableBody">
-              <?php
-                $sql6 = "SELECT * FROM fine";
-                $result6 = $conn->query($sql6);
+        
+          <div class="fine_users_tab">
+          <div class="fine_title_box">
+            <span class="fine_title">Fine Management</span>
+            <button class="btn btn-success btn-md fine_add_btn" id="fine_add_btn" onclick="toggleFineForm()">Add Fine</button>
+          </div>
 
-                if ($result6->num_rows > 0) {
-                    while($row6 = $result6->fetch_assoc()) {
-                        echo "<tr>
-                                <td>" . htmlspecialchars($row6['fine_id']) . "</td>
-                                <td>" . htmlspecialchars($row6['book_id']) . "</td>
-                                <td>" . htmlspecialchars($row6['member_id']) . "</td>
-                                <td>" . htmlspecialchars($row6['fine_amount']) . "</td>
-                                <td>" . htmlspecialchars($row6['fine_date_modified']) . "</td>
-                                <td>
-                                  <button class='btn btn-success btn-sm'>Edit</button>
-                                  <a class='btn btn-danger btn-sm' href='index.php?delete_fine=" . urlencode($row6['fine_id']) . "' onclick=\"return confirm('Delete this fine record?');\">Delete</a>
-                                </td>
-                              </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='7'>No fine records found.</td></tr>";
-                }
-              ?>
-            </tbody>
-          </table>
+          <div class="fine_content">
+            <div class="fine_content_title_box">
+              <div class="fine_content_title">Fines</div>
+              <div class="fine_content_title_line"></div>
+            </div>
+
+            <div class="fine_tab_head">
+              <table class="table fine_table">
+                <thead class="fine_table_head">
+                  <tr>
+                     <th scope="col">Fine ID</th>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Member ID</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Fine Date</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                 <tbody>
+                    <?php
+                      $sql4 = "SELECT * FROM fine";
+                      $result4 = $conn->query($sql4);
+                      if ($result4->num_rows > 0) {
+                          while($row4 = $result4->fetch_assoc()) {
+                              echo "<tr>
+                                      <td>" . htmlspecialchars($row4['fine_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['book_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['member_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['fine_amount']) . "</td>
+                                      <td>" . htmlspecialchars($row4['fine_date_modified']) . "</td>
+                                      <td>
+                                        <button class='btn btn-primary btn-sm' onclick=\"toggleFineForm()\">Edit</button>
+                                        <a class='btn btn-danger btn-sm' href='index.php?delete_fine=" . urlencode($row4['fine_id']) . "' onclick=\"return confirm('Delete this fine?');\">Delete</a>
+                                      </td>
+                                    </tr>";
+                          }
+                      } else {
+                          echo "<tr><td colspan='6'>No fines found.</td></tr>";
+                      }
+                  ?>
+                   </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+
+         <!-- Fine add form -->
+          <div class="fine_form" id="fine_form">
+          <form class="fine_add_form" action="add_fine.php" method="POST">
+            <div class="mb-3">
+               <label for="fine_id" class="form-label">Fine ID</label>
+              <input type="text" class="form-control form-control-id" id="fine_id" placeholder="Enter fine ID" name="fine_id">
+            </div>
+            <div class="mb-3">
+              <label for="book_id" class="form-label">Book ID</label>
+              <input type="text" class="form-control" id="book_id" placeholder="Enter book ID" name="book_id">
+            </div>
+            <div class="mb-3">
+              <label for="member_id" class="form-label">Member ID</label>
+              <input type="text" class="form-control" id="member_id" placeholder="Enter member ID" name="member_id">
+            </div>
+            <div class="mb-3">
+              <label for="amount" class="form-label">Amount</label>
+              <input type="number" class="form-control" id="amount" placeholder="Enter amount" name="amount" step="0.01">
+            </div>
+            <div class="mb-3">
+              <label for="fine_date" class="form-label">Fine Date</label>
+              <input type="date" class="form-control" id="fine_date" name="fine_date" value="<?php echo date('Y-m-d'); ?>">
+            </div>
+             <div>
+              <button type="submit" class="btn btn-primary">Add Fine</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleFineForm()">Cancel</button>
+            </div>
+             </form>
         </div>
 
       </div>

@@ -163,3 +163,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Fine form toggle
+
+// Expose a safe global function for inline `onclick` handlers
+function toggleFineForm() {
+    const form = document.getElementById('fine_form');
+    if (!form) return;
+    form.classList.toggle('active');
+}
+window.toggleFineForm = toggleFineForm;
+
+const finetab = document.getElementById('v-pills-fine');
+
+// Initialize button listeners after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const fineAddBtn = document.querySelector('.fine_add_btn');
+    if (fineAddBtn) {
+        fineAddBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleFineForm();
+        });
+    }
+});
