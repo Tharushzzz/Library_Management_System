@@ -440,6 +440,9 @@
           <div class="member_form" id="member_form">
           <form class="member_add_form">
             <div class="mb-3">
+               <label for="member_id" class="form-label">Member ID</label>
+              <input type="text" class="form-control form-control-id" id="member_id" placeholder="Enter member ID">
+            </div>
 
 
 
