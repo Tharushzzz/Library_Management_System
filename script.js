@@ -159,3 +159,13 @@ if (fineSearch && fineTableBody) {
         });
     });
 }
+
+
+// Member form toggle
+
+// Expose a safe global function for inline `onclick` handlers
+function toggleMemberForm() {
+    const form = document.getElementById('member_form');
+    if (!form) return;
+    form.classList.toggle('active');
+}
