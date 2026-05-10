@@ -670,4 +670,10 @@ body {
     font-size: 15px;
 }
 
+.member_table {
+    background-color: #3f505f;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 
