@@ -626,4 +626,11 @@ body {
     margin-left: 15px;
 }
 
+.member_content{
+    height: 80vh;
+    width: 98%;
+    background-color: #f1f5f9;
+    border-radius: 20px;
+}
+
 
