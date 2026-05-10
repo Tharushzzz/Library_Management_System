@@ -136,14 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
-
-
-
-
-
-
-
 // Fine users search filter
 const fineSearch = document.getElementById('fineSearch');
 const fineTableBody = document.getElementById('fineTableBody');
@@ -182,4 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMemberForm();
         });
     }
+});
+
 
