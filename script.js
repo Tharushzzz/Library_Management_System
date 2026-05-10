@@ -170,3 +170,5 @@ function toggleMemberForm() {
     form.classList.toggle('active');
 }
 window.toggleMemberForm = toggleMemberForm;
+
+const memberstab = document.getElementById('v-pills-Members');
