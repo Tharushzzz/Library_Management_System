@@ -136,14 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
-
-
-
-
-
-
-
 // Fine users search filter
 const fineSearch = document.getElementById('fineSearch');
 const fineTableBody = document.getElementById('fineTableBody');
@@ -159,3 +151,29 @@ if (fineSearch && fineTableBody) {
         });
     });
 }
+
+
+// Member form toggle
+
+// Expose a safe global function for inline `onclick` handlers
+function toggleMemberForm() {
+    const form = document.getElementById('member_form');
+    if (!form) return;
+    form.classList.toggle('active');
+}
+window.toggleMemberForm = toggleMemberForm;
+
+const memberstab = document.getElementById('v-pills-Members');
+
+// Initialize button listeners after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const memberAddBtn = document.querySelector('.member_add_btn');
+    if (memberAddBtn) {
+        memberAddBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMemberForm();
+        });
+    }
+});
+
+

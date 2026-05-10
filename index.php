@@ -381,6 +381,101 @@
       <!-- Members-tab  -->
       <div class="tab-pane fade" id="v-pills-Members" role="tabpanel" aria-labelledby="v-pills-Members-tab"
         tabindex="0">
+        <div class="member_users_tab">
+          <div class="member_title_box">
+            <span class="member_title">Member Management</span>
+            <button class="btn btn-success btn-md member_add_btn" id="member_add_btn" onclick="toggleMemberForm()">Add Member</button>
+          </div>
+
+          <div class="member_content">
+            <div class="member_content_title_box">
+              <div class="member_content_title">Members</div>
+              <div class="member_content_title_line"></div>
+            </div>
+
+            <div class="member_tab_head">
+              <table class="table member_table">
+                <thead class="member_table_head">
+                  <tr>
+                     <th scope="col">Member ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Birth Date</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                 <tbody>
+                  <tr>
+                    <td>M001</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>1990-01-01</td>
+                    <td>mark.otto@example.com</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                   <tr>
+                    <td>M002</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>1985-07-15</td>
+                    <td>jacob.thornton@example.com</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                   </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+
+         <!-- Member add form -->
+          <div class="member_form" id="member_form">
+          <form class="member_add_form">
+            <div class="mb-3">
+               <label for="member_id" class="form-label">Member ID</label>
+              <input type="text" class="form-control form-control-id" id="member_id" placeholder="Enter member ID">
+            </div>
+            <div class="mb-3">
+              <label for="first_name" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="first_name" placeholder="Enter first name">
+            </div>
+            <div class="mb-3">
+              <label for="last_name" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="last_name" placeholder="Enter last name">
+            </div>
+            <div class="mb-3">
+              <label for="birth_date" class="form-label">Birth Date</label>
+              <input type="date" class="form-control" id="birth_date">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+             <div>
+              <button type="submit" class="btn btn-primary">Add Member</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleMemberForm()">Cancel</button>
+            </div>
+             </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
         
           
 
