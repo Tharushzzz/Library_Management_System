@@ -633,4 +633,12 @@ body {
     border-radius: 20px;
 }
 
+.member_content_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
 
