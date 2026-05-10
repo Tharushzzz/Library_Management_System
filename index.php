@@ -386,6 +386,12 @@
             <span class="member_title">Member Management</span>
             <button class="btn btn-success btn-md member_add_btn" id="member_add_btn" onclick="toggleMemberForm()">Add Member</button>
           </div>
+
+          <div class="member_content">
+            <div class="member_content_title_box">
+              <div class="member_content_title">Members</div>
+              <div class="member_content_title_line"></div>
+            </div>
         
           
 
