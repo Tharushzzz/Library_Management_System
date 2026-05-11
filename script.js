@@ -215,33 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Book borrow toggle
-
-// Expose a safe global function for inline `onclick` handlers
-function toggleBorrowForm() {
-    const form = document.getElementById('borrow_form');
-    if (!form) return;
-    form.classList.toggle('active');
-}
-window.toggleBorrowForm = toggleBorrowForm;
-
-const borrowtab = document.getElementById('v-pills-borrow');
-
-// Initialize button listeners after DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    const borrowAddBtn = document.querySelector('.borrow_add_btn');
-    if (borrowAddBtn) {
-        borrowAddBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleBorrowForm();
-        });
-    }
-});
-
-
-
-
-
 // Member form toggle
 
 // Expose a safe global function for inline `onclick` handlers
@@ -313,6 +286,89 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+// Book borrow toggle
+
+// Expose a safe global function for inline `onclick` handlers
+function toggleBorrowForm(mode = 'toggle') {
+    const form = document.getElementById('borrow_form');
+    if (!form) return;
+
+    const addButton = document.getElementById('borrow_submit_add_btn');
+    const updateButton = document.querySelector('button[name="edit_borrow"]');
+
+    const setAddMode = () => {
+        if (addButton) addButton.style.display = 'inline-block';
+        if (updateButton) updateButton.style.display = 'none';
+    };
+
+    const setEditMode = () => {
+        if (addButton) addButton.style.display = 'none';
+        if (updateButton) updateButton.style.display = 'inline-block';
+    };
+
+    if (mode === 'add') {
+        form.classList.add('active');
+        setAddMode();
+        return;
+    }
+
+    if (mode === 'edit') {
+        form.classList.add('active');
+        setEditMode();
+        return;
+    }
+
+    form.classList.toggle('active');
+    setAddMode();
+}
+window.toggleBorrowForm = toggleBorrowForm;
+
+const borrowtab = document.getElementById('v-pills-borrow');
+
+// Initialize button listeners after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const borrowAddBtn = document.querySelector('.borrow_add_btn');
+    const borrowEditBtns = document.querySelectorAll('.borrow_edit_btn');
+    const borrowUpdateButton = document.querySelector('button[name="edit_borrow"]');
+    const borrowAddSubmit = document.getElementById('borrow_submit_add_btn');
+    if (borrowUpdateButton) {
+        borrowUpdateButton.style.display = 'none';
+    }
+    if (borrowAddSubmit) {
+        borrowAddSubmit.style.display = 'inline-block';
+    }
+    if (borrowAddBtn) {
+        borrowAddBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleBorrowForm('add');
+        });
+    }
+    if (borrowEditBtns) {
+        borrowEditBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const url = btn.getAttribute('data-edit-url');
+                if (url) {
+                    window.location.href = url;
+                    return;
+                }
+                e.preventDefault();
+                toggleBorrowForm('edit');
+            });
+        });
+    }
+});
+
+
+
+
+
+
+
+
 
 
 // Fine form toggle
