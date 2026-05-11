@@ -3,8 +3,6 @@
   include 'db_config.php';
   include 'updateuser.php';
   include 'delete_data.php';
-  include 'edite.php';
-
 
   // Check if user is logged in
   if (!isset($_SESSION['Login']) || $_SESSION['Login'] !== True) {
@@ -28,6 +26,8 @@
     }
   }
 
+
+  // If requested to edit a category, load its data for the form
   $selectedCategory = null;
   if (isset($_GET['edit_category']) && !empty($_GET['edit_category'])) {
     $editCategoryId = $_GET['edit_category'];
@@ -42,6 +42,8 @@
     }
   }
 
+
+  // If requested to edit a member, load its data for the form
   $selectedMember = null;
   if (isset($_GET['edit_member']) && !empty($_GET['edit_member'])) {
     $editMemberId = $_GET['edit_member'];
@@ -56,6 +58,7 @@
     }
   }
 
+  // If requested to edit a fine, load its data for the form
   $selectedFine = null;
   if (isset($_GET['edit_fine']) && !empty($_GET['edit_fine'])) {
     $editFineId = $_GET['edit_fine'];
