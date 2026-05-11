@@ -4,11 +4,26 @@
     session_start();
     }
 
-    $fineId = $_POST['fine_id'];
-    $bookId = $_POST['book_id'];
-    $memberId = $_POST['member_id'];
-    $amount = $_POST['amount'];
-    $fineDate = $_POST['fine_date'];
+    $fineId = isset($_POST['fine_id']) ? trim($_POST['fine_id']) : '';
+    $bookId = isset($_POST['book_id']) ? trim($_POST['book_id']) : '';
+    $memberId = isset($_POST['member_id']) ? trim($_POST['member_id']) : '';
+    $amount = isset($_POST['amount']) ? trim($_POST['amount']) : '';
+    $fineDate = isset($_POST['fine_date']) ? trim($_POST['fine_date']) : '';
+
+    // Server-side validation: amount must be numeric and between 2 and 500, max 2 decimals
+    if (!is_numeric($amount)) {
+        $_SESSION['alert'] = '<script>const Toast = Swal.mixin({toast: true,position: "top-end",showConfirmButton: false,timer: 3000,timerProgressBar: true});Toast.fire({icon: "error",title: "Invalid amount"});</script>';
+        header("Location: index.php#v-pills-fine");
+        exit();
+    }
+    $amountVal = round((float)$amount, 2);
+    if ($amountVal < 2 || $amountVal > 500) {
+        $_SESSION['alert'] = '<script>const Toast = Swal.mixin({toast: true,position: "top-end",showConfirmButton: false,timer: 3000,timerProgressBar: true});Toast.fire({icon: "error",title: "Amount must be between 2 and 500"});</script>';
+        header("Location: index.php#v-pills-fine");
+        exit();
+    }
+    // format to 2 decimal places
+    $amount = number_format($amountVal, 2, '.', '');
 
     if (isset($_POST['edit_fine'])) {
         // Update existing fine

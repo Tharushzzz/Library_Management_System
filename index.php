@@ -758,7 +758,8 @@
             </div>
             <div class="mb-3">
               <label for="amount" class="form-label">Amount</label>
-              <input type="number" class="form-control" id="amount" placeholder="Enter amount" name="amount" step="0.01" value="<?php echo isset($selectedFine['fine_amount']) ? htmlspecialchars($selectedFine['fine_amount']) : ''; ?>">
+              <input type="number" class="form-control" id="amount" placeholder="Enter amount" name="amount" step="0.01" min="2" max="500" required oninput="this.value=this.value.replace(/[^0-9.]/g,''); if(this.value.indexOf('.')!==-1){this.value=this.value.slice(0,this.value.indexOf('.')+3);}" value="<?php echo isset($selectedFine['fine_amount']) ? htmlspecialchars($selectedFine['fine_amount']) : ''; ?>">
+              <div class="form-text">Enter an amount between 2 and 500 (max 2 decimals).</div>
             </div>
             <div class="mb-3">
               <label for="fine_date" class="form-label">Fine Date</label>
