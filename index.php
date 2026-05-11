@@ -72,6 +72,21 @@
       $stmt->close();
     }
   }
+
+  // If requested to edit a borrow record, load its data for the form
+  $selectedBorrow = null;
+  if (isset($_GET['edit_borrow']) && !empty($_GET['edit_borrow'])) {
+    $editBorrowId = $_GET['edit_borrow'];
+    if ($stmt = $conn->prepare('SELECT * FROM bookborrower WHERE borrow_id = ?')) {
+      $stmt->bind_param('s', $editBorrowId);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      if ($result && $result->num_rows > 0) {
+        $selectedBorrow = $result->fetch_assoc();
+      }
+      $stmt->close();
+    }
+  }
   
   
 
@@ -585,20 +600,22 @@
          <!-- Book Borrow add form -->
           <div class="borrow_form" id="borrow_form">
           <form class="borrow_add_form" action="add_borrow.php" method="POST">
+              <input type="hidden" name="original_borrow_id" value="<?php echo isset($selectedBorrow['borrow_id']) ? htmlspecialchars($selectedBorrow['borrow_id']) : ''; ?>">
             <div class="mb-3">
                <label for="borrow_id" class="form-label">Borrow ID</label>
               <input type="text" class="form-control form-control-id" id="borrow_id" placeholder="Enter borrow ID" name="borrow_id" value="<?php echo isset($selectedBorrow['borrow_id']) ? htmlspecialchars($selectedBorrow['borrow_id']) : ''; ?>">
             </div>
             <div class="mb-3">
               <label for="book_id" class="form-label">Book ID</label>
-              <select type="text" class="form-control" id="book_id" placeholder="Enter book ID" name="book_id" value="<?php echo isset($selectedBorrow['book_id']) ? htmlspecialchars($selectedBorrow['book_id']) : ''; ?>">
+                <select type="text" class="form-control" id="book_id" placeholder="Enter book ID" name="book_id">
                 <option value="">Select a book</option>
                 <?php
                   $sql = "SELECT book_id FROM book";
                   $result = $conn->query($sql);
                   if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
-                          echo "<option value='" . htmlspecialchars($row['book_id']) . "'>" . htmlspecialchars($row['book_id']) . "</option>";
+                            $selected = (isset($selectedBorrow['book_id']) && $selectedBorrow['book_id'] == $row['book_id']) ? 'selected' : '';
+                            echo "<option value='" . htmlspecialchars($row['book_id']) . "' $selected>" . htmlspecialchars($row['book_id']) . "</option>";
                       }
                   }
                 ?>
@@ -606,14 +623,15 @@
             </div>
             <div class="mb-3">
               <label for="member_id" class="form-label">Member ID</label>
-              <select type="text" class="form-control" id="member_id" placeholder="Enter member ID" name="member_id" value="<?php echo isset($selectedBorrow['member_id']) ? htmlspecialchars($selectedBorrow['member_id']) : ''; ?>">
+                <select type="text" class="form-control" id="member_id" placeholder="Enter member ID" name="member_id">
                 <option value="">Select a member</option>
                 <?php
                   $sql = "SELECT member_id FROM member";
                   $result = $conn->query($sql);
                   if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
-                          echo "<option value='" . htmlspecialchars($row['member_id']) . "'>" . htmlspecialchars($row['member_id']) . "</option>";
+                            $selected = (isset($selectedBorrow['member_id']) && $selectedBorrow['member_id'] == $row['member_id']) ? 'selected' : '';
+                            echo "<option value='" . htmlspecialchars($row['member_id']) . "' $selected>" . htmlspecialchars($row['member_id']) . "</option>";
                       }
                   }
                 ?>
@@ -629,7 +647,7 @@
             </div>
             <div class="mb-3">
               <label for="borrow_date" class="form-label">Borrow Date</label>
-              <input type="date" class="form-control" id="borrow_date" name="borrow_date" value="<?php echo isset($selectedBorrow['borrow_date']) ? htmlspecialchars($selectedBorrow['borrow_date']) : date('Y-m-d'); ?>">
+              <input type="date" class="form-control" id="borrow_date" name="borrow_date" value="<?php echo isset($selectedBorrow['borrower_date_modified']) ? htmlspecialchars($selectedBorrow['borrower_date_modified']) : date('Y-m-d'); ?>">
             </div>
              <div>
               <button type="submit" class="btn btn-primary" id="borrow_submit_add_btn">Add Borrow</button>
@@ -838,6 +856,9 @@
     }
     if (!empty($selectedFine)) {
       echo "<script>document.addEventListener('DOMContentLoaded', function(){ var tabBtn = document.getElementById('v-pills-fine-tab'); if(tabBtn){ if (typeof bootstrap !== 'undefined' && bootstrap.Tab) { try{ new bootstrap.Tab(tabBtn).show(); } catch(e){ tabBtn.click(); } } else { tabBtn.click(); } } setTimeout(function(){ if (typeof toggleFineForm === 'function') toggleFineForm('edit'); if (window.history && window.history.replaceState) { var url = new URL(window.location.href); url.searchParams.delete('edit_fine'); window.history.replaceState({}, document.title, url.toString()); } }, 60); });</script>";
+    }
+    if (!empty($selectedBorrow)) {
+      echo "<script>document.addEventListener('DOMContentLoaded', function(){ var tabBtn = document.getElementById('v-pills-borrow-tab'); if(tabBtn){ if (typeof bootstrap !== 'undefined' && bootstrap.Tab) { try{ new bootstrap.Tab(tabBtn).show(); } catch(e){ tabBtn.click(); } } else { tabBtn.click(); } } setTimeout(function(){ if (typeof toggleBorrowForm === 'function') toggleBorrowForm('edit'); if (window.history && window.history.replaceState) { var url = new URL(window.location.href); url.searchParams.delete('edit_borrow'); window.history.replaceState({}, document.title, url.toString()); } }, 60); });</script>";
     }  ?>
   
   
