@@ -11,7 +11,7 @@
       $email = $conn->real_escape_string($_POST['email']);
       $password = $conn->real_escape_string($_POST['password']);
 
-      $updateSql = "UPDATE user SET first_name = '$firstName', last_name = '$lastName', username = '$username', email = '$email', password = 'md5($password)' WHERE user_id = '$userId'";
+      $updateSql = "UPDATE user SET first_name = '$firstName', last_name = '$lastName', username = '$username', email = '$email', password = '$password' WHERE user_id = '$userId'";
       if ($conn->query($updateSql) === TRUE) {
         $_SESSION['username'] = $username;
         header("Location: index.php");
