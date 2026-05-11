@@ -13,6 +13,63 @@
     exit();
   }
   
+  // If requested to edit a book, load its data for the form
+  $selectedBook = null;
+  if (isset($_GET['edit_book']) && !empty($_GET['edit_book'])) {
+    $editId = $_GET['edit_book'];
+    if ($stmt = $conn->prepare('SELECT * FROM book WHERE book_id = ?')) {
+      $stmt->bind_param('s', $editId);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      if ($result && $result->num_rows > 0) {
+        $selectedBook = $result->fetch_assoc();
+      }
+      $stmt->close();
+    }
+  }
+
+  $selectedCategory = null;
+  if (isset($_GET['edit_category']) && !empty($_GET['edit_category'])) {
+    $editCategoryId = $_GET['edit_category'];
+    if ($stmt = $conn->prepare('SELECT * FROM bookcategory WHERE category_id = ?')) {
+      $stmt->bind_param('s', $editCategoryId);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      if ($result && $result->num_rows > 0) {
+        $selectedCategory = $result->fetch_assoc();
+      }
+      $stmt->close();
+    }
+  }
+
+  $selectedMember = null;
+  if (isset($_GET['edit_member']) && !empty($_GET['edit_member'])) {
+    $editMemberId = $_GET['edit_member'];
+    if ($stmt = $conn->prepare('SELECT * FROM member WHERE member_id = ?')) {
+      $stmt->bind_param('s', $editMemberId);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      if ($result && $result->num_rows > 0) {
+        $selectedMember = $result->fetch_assoc();
+      }
+      $stmt->close();
+    }
+  }
+
+  $selectedFine = null;
+  if (isset($_GET['edit_fine']) && !empty($_GET['edit_fine'])) {
+    $editFineId = $_GET['edit_fine'];
+    if ($stmt = $conn->prepare('SELECT * FROM fine WHERE fine_id = ?')) {
+      $stmt->bind_param('s', $editFineId);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      if ($result && $result->num_rows > 0) {
+        $selectedFine = $result->fetch_assoc();
+      }
+      $stmt->close();
+    }
+  }
+  
   
 
 ?>
@@ -231,7 +288,7 @@
                                       <td>" . htmlspecialchars($row2['book_name']) . "</td>
                                       <td>" . htmlspecialchars($row2['category_id']) . "</td>
                                       <td>
-                                        <button class='btn btn-primary btn-sm book_edit_btn' onclick=\"toggleBookForm('edit')\">Edit</button>
+                                        <button class='btn btn-primary btn-sm book_edit_btn' data-edit-url='index.php?edit_book=" . urlencode($row2['book_id']) . "'>Edit</button>
                                         <a class='btn btn-danger btn-sm' href='index.php?delete_book=" . urlencode($row2['book_id']) . "' onclick=\"return confirm('Delete this book?');\">Delete</a>
                                       </td>
                                     </tr>";
@@ -252,9 +309,11 @@
          <!-- Books add form -->
         <div class="book_form" id="book_form">
           <form action="add_book.php" method="POST" class="book_add_form">
+            <input type="hidden" id="book_action" name="book_action" value="<?php echo !empty($selectedBook) ? 'edit' : 'add'; ?>">
+            <input type="hidden" id="original_book_id" name="original_book_id" value="<?php echo isset($selectedBook['book_id']) ? htmlspecialchars($selectedBook['book_id']) : ''; ?>">
             <div class="mb-3">
               <label for="book_id" class="form-label">Book ID</label>
-              <input type="text" class="form-control form-control-id" id="book_id" name="book_id" value="<?php echo isset($selectedBook['book_id']) ? htmlspecialchars($selectedBook['book_id']) : ''; ?>" placeholder="Enter book ID">
+              <input type="text" class="form-control form-control-id" id="book_id" name="book_id" value="<?php echo isset($selectedBook['book_id']) ? htmlspecialchars($selectedBook['book_id']) : ''; ?>" placeholder="Enter book ID" <?php echo !empty($selectedBook) ? 'readonly' : ''; ?>>
             </div>
             <div class="mb-3">
               <label for="book_name" class="form-label">Book Name</label>
@@ -327,7 +386,7 @@
                                     <td>" . htmlspecialchars($row3['category_Name']) . "</td>
                                     <td>" . htmlspecialchars($row3['date_modified']) . "</td>
                                     <td>
-                                      <button class='btn btn-primary btn-sm' onclick=\"toggleCategoriesForm()\">Edit</button>
+                                      <button class='btn btn-primary btn-sm category_edit_btn' data-edit-url='index.php?edit_category=" . urlencode($row3['category_id']) . "'>Edit</button>
                                       <a class='btn btn-danger btn-sm' href='index.php?delete_category=" . urlencode($row3['category_id']) . "' onclick=\"return confirm('Delete this category?');\">Delete</a>
                                     </td>
                                   </tr>";
@@ -349,19 +408,20 @@
           <form class="categories_add_form" action="add_category.php" method="POST">
              <div class="mb-3">
               <label for="category_id" class="form-label">Category ID</label>
-              <input type="text" class="form-control form-control-id" id="category_id" name="category_id" placeholder="Enter category ID">
+              <input type="text" class="form-control form-control-id" id="category_id" name="category_id" value="<?php echo isset($selectedCategory['category_id']) ? htmlspecialchars($selectedCategory['category_id']) : ''; ?>" placeholder="Enter category ID">
             </div>
             <div class="mb-3">
               <label for="category_name" class="form-label">Category Name</label>
-              <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter category name">
+              <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo isset($selectedCategory['category_Name']) ? htmlspecialchars($selectedCategory['category_Name']) : ''; ?>" placeholder="Enter category name">
             </div>
             <div class="mb-3">
               <label for="category_description" class="form-label">Modified Date</label>
               <input type="date" class="form-control" id="category_modified_date" name="category_modified_date" rows="3"
-                value="<?php echo date('Y-m-d'); ?>">
+                value="<?php echo isset($selectedCategory['date_modified']) ? htmlspecialchars($selectedCategory['date_modified']) : date('Y-m-d'); ?>">
             </div>
             <div>
-              <button type="submit" class="btn btn-primary">Add Category</button>
+              <button type="submit" class="btn btn-primary" id="categories_submit_add_btn">Add Category</button>
+              <button type="submit" class="btn btn-primary" name="edit_category" style="display:none;">Update Category</button>
               <button type="button" class="btn btn-secondary" onclick="toggleCategoriesForm()">Cancel</button>
             </div>
             
@@ -410,7 +470,7 @@
                                       <td>" . htmlspecialchars($row4['birthday']) . "</td>
                                       <td>" . htmlspecialchars($row4['email']) . "</td>
                                       <td>
-                                        <button class='btn btn-primary btn-sm' onclick=\"toggleMemberForm()\">Edit</button>
+                                        <button class='btn btn-primary btn-sm member_edit_btn' data-edit-url='index.php?edit_member=" . urlencode($row4['member_id']) . "'>Edit</button>
                                         <a class='btn btn-danger btn-sm' href='index.php?delete_member=" . urlencode($row4['member_id']) . "' onclick=\"return confirm('Delete this member?');\">Delete</a>
                                       </td>
                                     </tr>";
@@ -432,26 +492,27 @@
           <form class="member_add_form" action="add_member.php" method="POST">
             <div class="mb-3">
                <label for="member_id" class="form-label">Member ID</label>
-              <input type="text" class="form-control form-control-id" id="member_id" placeholder="Enter member ID" name="member_id">
+              <input type="text" class="form-control form-control-id" id="member_id" placeholder="Enter member ID" name="member_id" value="<?php echo isset($selectedMember['member_id']) ? htmlspecialchars($selectedMember['member_id']) : ''; ?>">
             </div>
             <div class="mb-3">
               <label for="first_name" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="first_name" placeholder="Enter first name" name="first_name">
+              <input type="text" class="form-control" id="first_name" placeholder="Enter first name" name="first_name" value="<?php echo isset($selectedMember['first_name']) ? htmlspecialchars($selectedMember['first_name']) : ''; ?>">
             </div>
             <div class="mb-3">
               <label for="last_name" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="last_name" placeholder="Enter last name" name="last_name">
+              <input type="text" class="form-control" id="last_name" placeholder="Enter last name" name="last_name" value="<?php echo isset($selectedMember['last_name']) ? htmlspecialchars($selectedMember['last_name']) : ''; ?>">
             </div>
             <div class="mb-3">
               <label for="birth_date" class="form-label">Birth Date</label>
-              <input type="date" class="form-control" id="birth_date" name="birth_date" value="<?php echo date('Y-m-d'); ?>">
+              <input type="date" class="form-control" id="birth_date" name="birth_date" value="<?php echo isset($selectedMember['birthday']) ? htmlspecialchars($selectedMember['birthday']) : date('Y-m-d'); ?>">
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo isset($selectedMember['email']) ? htmlspecialchars($selectedMember['email']) : ''; ?>">
             </div>
              <div>
-              <button type="submit" class="btn btn-primary">Add Member</button>
+              <button type="submit" class="btn btn-primary" id="member_submit_add_btn">Add Member</button>
+              <button type="submit" class="btn btn-primary" name="edit_member" style="display:none;">Update Member</button>
               <button type="button" class="btn btn-secondary" onclick="toggleMemberForm()">Cancel</button>
             </div>
              </form>
@@ -510,7 +571,7 @@
                                       <td>" . htmlspecialchars($row4['fine_amount']) . "</td>
                                       <td>" . htmlspecialchars($row4['fine_date_modified']) . "</td>
                                       <td>
-                                        <button class='btn btn-primary btn-sm' onclick=\"toggleFineForm()\">Edit</button>
+                                        <button class='btn btn-primary btn-sm fine_edit_btn' data-edit-url='index.php?edit_fine=" . urlencode($row4['fine_id']) . "'>Edit</button>
                                         <a class='btn btn-danger btn-sm' href='index.php?delete_fine=" . urlencode($row4['fine_id']) . "' onclick=\"return confirm('Delete this fine?');\">Delete</a>
                                       </td>
                                     </tr>";
@@ -532,7 +593,7 @@
           <form class="fine_add_form" action="add_fine.php" method="POST">
             <div class="mb-3">
                <label for="fine_id" class="form-label">Fine ID</label>
-              <input type="text" class="form-control form-control-id" id="fine_id" placeholder="Enter fine ID" name="fine_id">
+              <input type="text" class="form-control form-control-id" id="fine_id" placeholder="Enter fine ID" name="fine_id" value="<?php echo isset($selectedFine['fine_id']) ? htmlspecialchars($selectedFine['fine_id']) : ''; ?>">
             </div>
             <div class="mb-3">
               <label for="book_id" class="form-label">Book ID</label>
@@ -543,7 +604,8 @@
                   $result = $conn->query($sql);
                   if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                      echo "<option value='" . htmlspecialchars($row['book_id']) . "'>" . htmlspecialchars($row['book_id']) . "</option>";
+                      $selected = (isset($selectedFine['book_id']) && $selectedFine['book_id'] == $row['book_id']) ? 'selected' : '';
+                      echo "<option value='" . htmlspecialchars($row['book_id']) . "' $selected>" . htmlspecialchars($row['book_id']) . "</option>";
                     }
                   }
                 ?>
@@ -558,7 +620,8 @@
                   $result = $conn->query($sql);
                   if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                      echo "<option value='" . htmlspecialchars($row['member_id']) . "'>" . htmlspecialchars($row['member_id']) . "</option>";
+                      $selected = (isset($selectedFine['member_id']) && $selectedFine['member_id'] == $row['member_id']) ? 'selected' : '';
+                      echo "<option value='" . htmlspecialchars($row['member_id']) . "' $selected>" . htmlspecialchars($row['member_id']) . "</option>";
                     }
                   }
                 ?>
@@ -566,14 +629,15 @@
             </div>
             <div class="mb-3">
               <label for="amount" class="form-label">Amount</label>
-              <input type="number" class="form-control" id="amount" placeholder="Enter amount" name="amount" step="0.01">
+              <input type="number" class="form-control" id="amount" placeholder="Enter amount" name="amount" step="0.01" value="<?php echo isset($selectedFine['fine_amount']) ? htmlspecialchars($selectedFine['fine_amount']) : ''; ?>">
             </div>
             <div class="mb-3">
               <label for="fine_date" class="form-label">Fine Date</label>
-              <input type="date" class="form-control" id="fine_date" name="fine_date" value="<?php echo date('Y-m-d'); ?>">
+              <input type="date" class="form-control" id="fine_date" name="fine_date" value="<?php echo isset($selectedFine['fine_date_modified']) ? htmlspecialchars($selectedFine['fine_date_modified']) : date('Y-m-d'); ?>">
             </div>
              <div>
-              <button type="submit" class="btn btn-primary">Add Fine</button>
+              <button type="submit" class="btn btn-primary" id="fine_submit_add_btn">Add Fine</button>
+              <button type="submit" class="btn btn-primary" name="edit_fine" style="display:none;">Update Fine</button>
               <button type="button" class="btn btn-secondary" onclick="toggleFineForm()">Cancel</button>
             </div>
              </form>
@@ -652,7 +716,18 @@
       echo $_SESSION['alert'];
       unset($_SESSION['alert']);
     }
-  ?>
+    // If a book was loaded for editing, open the Books tab and show the edit form
+    if (!empty($selectedBook)) {
+      echo "<script>document.addEventListener('DOMContentLoaded', function(){ var tabBtn = document.getElementById('v-pills-books-tab'); if(tabBtn){ if (typeof bootstrap !== 'undefined' && bootstrap.Tab) { try{ new bootstrap.Tab(tabBtn).show(); } catch(e){ tabBtn.click(); } } else { tabBtn.click(); } } setTimeout(function(){ if (typeof toggleBookForm === 'function') toggleBookForm('edit'); if (window.history && window.history.replaceState) { var url = new URL(window.location.href); url.searchParams.delete('edit_book'); window.history.replaceState({}, document.title, url.toString()); } }, 60); });</script>";
+    }    if (!empty($selectedCategory)) {
+      echo "<script>document.addEventListener('DOMContentLoaded', function(){ var tabBtn = document.getElementById('v-pills-categories-tab'); if(tabBtn){ if (typeof bootstrap !== 'undefined' && bootstrap.Tab) { try{ new bootstrap.Tab(tabBtn).show(); } catch(e){ tabBtn.click(); } } else { tabBtn.click(); } } setTimeout(function(){ if (typeof toggleCategoriesForm === 'function') toggleCategoriesForm('edit'); if (window.history && window.history.replaceState) { var url = new URL(window.location.href); url.searchParams.delete('edit_category'); window.history.replaceState({}, document.title, url.toString()); } }, 60); });</script>";
+    }
+    if (!empty($selectedMember)) {
+      echo "<script>document.addEventListener('DOMContentLoaded', function(){ var tabBtn = document.getElementById('v-pills-Members-tab'); if(tabBtn){ if (typeof bootstrap !== 'undefined' && bootstrap.Tab) { try{ new bootstrap.Tab(tabBtn).show(); } catch(e){ tabBtn.click(); } } else { tabBtn.click(); } } setTimeout(function(){ if (typeof toggleMemberForm === 'function') toggleMemberForm('edit'); if (window.history && window.history.replaceState) { var url = new URL(window.location.href); url.searchParams.delete('edit_member'); window.history.replaceState({}, document.title, url.toString()); } }, 60); });</script>";
+    }
+    if (!empty($selectedFine)) {
+      echo "<script>document.addEventListener('DOMContentLoaded', function(){ var tabBtn = document.getElementById('v-pills-fine-tab'); if(tabBtn){ if (typeof bootstrap !== 'undefined' && bootstrap.Tab) { try{ new bootstrap.Tab(tabBtn).show(); } catch(e){ tabBtn.click(); } } else { tabBtn.click(); } } setTimeout(function(){ if (typeof toggleFineForm === 'function') toggleFineForm('edit'); if (window.history && window.history.replaceState) { var url = new URL(window.location.href); url.searchParams.delete('edit_fine'); window.history.replaceState({}, document.title, url.toString()); } }, 60); });</script>";
+    }  ?>
   
   
 
