@@ -175,7 +175,7 @@
 
       <button class="nav-link d-flex gap-2 align-items-center menu_btn" id="v-pills-fine-tab" data-bs-toggle="pill"
         data-bs-target="#v-pills-fine" type="button" role="tab" aria-controls="v-pills-fine" aria-selected="false">
-        <i class="fa-solid fa-magnifying-glass" style="color: rgb(160, 164, 165);"></i>
+        <i class="fa-solid fa-dollar-sign" style="color: rgb(160, 164, 165);"></i>
         Fine Users
       </button>
 
