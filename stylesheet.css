@@ -230,6 +230,12 @@ body {
     width: 50vw;
 }
 
+@media (max-width: 600px) {
+    .login-left{
+        display: none;
+    }
+}
+
 
 .log_card{
     display: flex;
