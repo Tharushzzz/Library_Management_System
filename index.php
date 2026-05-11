@@ -434,10 +434,45 @@
                   ?>
                 </tbody>
               </table>
-              </table> 
+              
             </div>   
           </div>  
         </div>
+
+          <!-- Books-borrow add form -->
+        <div class="borrow_form" id="borrow_form">
+          <form class="borrow_add_form">
+            <div class="mb-3">
+              <label for="borrow_id" class="form-label">Borrow ID</label>
+              <input type="text" class="form-control form-control-id" id="borrow_id" placeholder="Enter Book Borrow ID">
+            </div>
+            <div class="mb-3">
+              <label for="book_id" class="form-label">Book ID</label>
+              <input type="text" class="form-control" id="book_id" placeholder="Enter book ID">
+            </div>
+            <div class="mb-3">
+              <label for="member_id" class="form-label">Member ID</label>
+              <input type="text" class="form-control" id="member_id" placeholder="Enter member ID">
+            </div>
+            <div class="mb-3">
+              <label for="borrow_status" class="form-label">Borrow Status</label>
+              <select class="form-control" id="borrow_status">
+                <option value="borrowed">Borrowed</option>
+                <option value="returned">Returned</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="borrow_date" class="form-label">Borrow Date</label>
+              <input type="date" class="form-control" id="borrow_date" value="<?php echo date('Y-m-d'); ?>">
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary">Add Borrow</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleBorrowForm()">Cancel</button>
+            </div>
+            
+          </form>
+        </div>
+
 
       </div>
 
