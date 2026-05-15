@@ -731,6 +731,30 @@ body {
     padding-right: 20px;
 }
 
+.borrow_tab_head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.borrow_tab_title{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.borrow_table {
+    background-color: #3f505f;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.borrow_table_head th {
+    background-color: #1e293b;
+    color: #f1f5f9;
+}
+
 
 
 

@@ -553,8 +553,17 @@
               <div class="borrow_content_title">Borrowed Books</div>
               <div class="borrow_content_title_line"></div>
             </div>
+            <div class="borrow_tab_head">
+              <table class="table borrow_table">
+                <thead class="borrow_table_head">
+                  <tr></tr>
+                </thead>  
+               
+              </table>
+            </div>    
           </div>
         </div>
+
       </div>
 
       <!-- Fine-Users-tab -->
