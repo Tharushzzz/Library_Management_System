@@ -543,8 +543,115 @@
 
       <!-- Borrow-Books-tab -->
       <div class="tab-pane fade" id="v-pills-borrow" role="tabpanel" aria-labelledby="v-pills-borrow-tab" tabindex="0">
-        
-         
+        <div class="borrow_users_tab">
+          <div class="borrow_title_box">
+            <span class="borrow_title">Borrow Book Management</span>
+            <button class="btn btn-success btn-md borrow_add_btn" id="borrow_add_btn" onclick="toggleBorrowForm()">Add Book Borrow</button>
+          </div>
+          <div class="borrow_content">
+            <div class="borrow_content_title_box">
+              <div class="borrow_content_title">Borrowed Books</div>
+              <div class="borrow_content_title_line"></div>
+            </div>
+            <div class="borrow_tab_head">
+              <table class="table borrow_table">
+                <thead class="borrow_table_head">
+                  <tr>
+                    <th scope="col">Borrow ID</th>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Member ID</th>
+                    <th scope="col">Borrow Status</th>
+                    <th scope="col">Borrow Date</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>  
+                <tbody>
+                  <?php
+                      $sql4 = "SELECT * FROM bookborrower";
+                      $result4 = $conn->query($sql4);
+                      if ($result4->num_rows > 0) {
+                          while($row4 = $result4->fetch_assoc()) {
+                              echo "<tr>
+                                      <td>" . htmlspecialchars($row4['borrow_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['book_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['member_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['borrow_status']) . "</td>
+                                      <td>" . htmlspecialchars($row4['borrower_date_modified']) . "</td>
+                                      <td>
+                                        <button class='btn btn-primary btn-sm borrow_edit_btn' data-edit-url='index.php?edit_borrow=" . urlencode($row4['borrow_id']) . "'>Edit</button>
+                                        <a class='btn btn-danger btn-sm' href='index.php?delete_borrow=" . urlencode($row4['borrow_id']) . "' onclick=\"return confirm('Delete this borrow record?');\">Delete</a>
+                                      </td>
+                                    </tr>";
+                          }
+                      } else {
+                          echo "<tr><td colspan='6'>No borrowed books found.</td></tr>";
+                      }
+                  ?>
+                </tbody>
+              </table>
+            </div>    
+          </div>
+        </div>
+
+        <!-- Book Borrow add form -->
+        <div class="borrow_form" id="borrow_form">
+          <form class="borrow_add_form" action="add_borrow.php" method="POST">
+              <input type="hidden" name="original_borrow_id" value="<?php echo isset($selectedBorrow['borrow_id']) ? htmlspecialchars($selectedBorrow['borrow_id']) : ''; ?>">
+            <div class="mb-3">
+               <label for="borrow_id" class="form-label">Borrow ID</label>
+              <input type="text" class="form-control form-control-id" id="borrow_id" placeholder="Enter borrow ID" name="borrow_id" value="<?php echo isset($selectedBorrow['borrow_id']) ? htmlspecialchars($selectedBorrow['borrow_id']) : ''; ?>">
+            </div>
+            <div class="mb-3">
+              <label for="book_id" class="form-label">Book ID</label>
+              <select type="text" class="form-control" id="book_id" placeholder="Enter book ID" name="book_id">
+                <option value="">Select a book</option>
+                <?php
+                  $sql = "SELECT book_id FROM book";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                            $selected = (isset($selectedBorrow['book_id']) && $selectedBorrow['book_id'] == $row['book_id']) ? 'selected' : '';
+                            echo "<option value='" . htmlspecialchars($row['book_id']) . "' $selected>" . htmlspecialchars($row['book_id']) . "</option>";
+                      }
+                  }
+                ?>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="member_id" class="form-label">Member ID</label>
+              <select type="text" class="form-control" id="member_id" placeholder="Enter member ID" name="member_id">
+                <option value="">Select a member</option>
+                <?php
+                  $sql = "SELECT member_id FROM member";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                            $selected = (isset($selectedBorrow['member_id']) && $selectedBorrow['member_id'] == $row['member_id']) ? 'selected' : '';
+                            echo "<option value='" . htmlspecialchars($row['member_id']) . "' $selected>" . htmlspecialchars($row['member_id']) . "</option>";
+                      }
+                  }
+                ?>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="borrow_status" class="form-label">Borrow Status</label>
+              <select class="form-control" id="borrow_status" name="borrow_status">
+                <option value="">Select status</option>
+                <option value="borrowed" <?php echo (isset($selectedBorrow['borrow_status']) && $selectedBorrow['borrow_status'] == 'borrowed') ? 'selected' : ''; ?>>Borrowed</option>
+                <option value="returned" <?php echo (isset($selectedBorrow['borrow_status']) && $selectedBorrow['borrow_status'] == 'returned') ? 'selected' : ''; ?>>Returned</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="borrow_date" class="form-label">Borrow Date</label>
+              <input type="date" class="form-control" id="borrow_date" name="borrow_date" value="<?php echo isset($selectedBorrow['borrower_date_modified']) ? htmlspecialchars($selectedBorrow['borrower_date_modified']) : date('Y-m-d'); ?>">
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary" id="borrow_submit_add_btn">Add Borrow</button>
+              <button type="submit" class="btn btn-primary" name="edit_borrow" style="display:none;">Update Borrow</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleBorrowForm()">Cancel</button>
+            </div>
+          </form>
+       </div>
 
       </div>
 
