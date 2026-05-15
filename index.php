@@ -565,7 +565,29 @@
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>  
-               
+                <tbody>
+                  <?php
+                      $sql4 = "SELECT * FROM bookborrower";
+                      $result4 = $conn->query($sql4);
+                      if ($result4->num_rows > 0) {
+                          while($row4 = $result4->fetch_assoc()) {
+                              echo "<tr>
+                                      <td>" . htmlspecialchars($row4['borrow_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['book_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['member_id']) . "</td>
+                                      <td>" . htmlspecialchars($row4['borrow_status']) . "</td>
+                                      <td>" . htmlspecialchars($row4['borrower_date_modified']) . "</td>
+                                      <td>
+                                        <button class='btn btn-primary btn-sm borrow_edit_btn' data-edit-url='index.php?edit_borrow=" . urlencode($row4['borrow_id']) . "'>Edit</button>
+                                        <a class='btn btn-danger btn-sm' href='index.php?delete_borrow=" . urlencode($row4['borrow_id']) . "' onclick=\"return confirm('Delete this borrow record?');\">Delete</a>
+                                      </td>
+                                    </tr>";
+                          }
+                      } else {
+                          echo "<tr><td colspan='6'>No borrowed books found.</td></tr>";
+                      }
+                  ?>
+                </tbody>
               </table>
             </div>    
           </div>
