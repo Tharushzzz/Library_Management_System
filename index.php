@@ -593,6 +593,66 @@
           </div>
         </div>
 
+        <!-- Book Borrow add form -->
+        <div class="borrow_form" id="borrow_form">
+          <form class="borrow_add_form" action="add_borrow.php" method="POST">
+              <input type="hidden" name="original_borrow_id" value="<?php echo isset($selectedBorrow['borrow_id']) ? htmlspecialchars($selectedBorrow['borrow_id']) : ''; ?>">
+            <div class="mb-3">
+               <label for="borrow_id" class="form-label">Borrow ID</label>
+              <input type="text" class="form-control form-control-id" id="borrow_id" placeholder="Enter borrow ID" name="borrow_id" value="<?php echo isset($selectedBorrow['borrow_id']) ? htmlspecialchars($selectedBorrow['borrow_id']) : ''; ?>">
+            </div>
+            <div class="mb-3">
+              <label for="book_id" class="form-label">Book ID</label>
+              <select type="text" class="form-control" id="book_id" placeholder="Enter book ID" name="book_id">
+                <option value="">Select a book</option>
+                <?php
+                  $sql = "SELECT book_id FROM book";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                            $selected = (isset($selectedBorrow['book_id']) && $selectedBorrow['book_id'] == $row['book_id']) ? 'selected' : '';
+                            echo "<option value='" . htmlspecialchars($row['book_id']) . "' $selected>" . htmlspecialchars($row['book_id']) . "</option>";
+                      }
+                  }
+                ?>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="member_id" class="form-label">Member ID</label>
+              <select type="text" class="form-control" id="member_id" placeholder="Enter member ID" name="member_id">
+                <option value="">Select a member</option>
+                <?php
+                  $sql = "SELECT member_id FROM member";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                            $selected = (isset($selectedBorrow['member_id']) && $selectedBorrow['member_id'] == $row['member_id']) ? 'selected' : '';
+                            echo "<option value='" . htmlspecialchars($row['member_id']) . "' $selected>" . htmlspecialchars($row['member_id']) . "</option>";
+                      }
+                  }
+                ?>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="borrow_status" class="form-label">Borrow Status</label>
+              <select class="form-control" id="borrow_status" name="borrow_status">
+                <option value="">Select status</option>
+                <option value="borrowed" <?php echo (isset($selectedBorrow['borrow_status']) && $selectedBorrow['borrow_status'] == 'borrowed') ? 'selected' : ''; ?>>Borrowed</option>
+                <option value="returned" <?php echo (isset($selectedBorrow['borrow_status']) && $selectedBorrow['borrow_status'] == 'returned') ? 'selected' : ''; ?>>Returned</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="borrow_date" class="form-label">Borrow Date</label>
+              <input type="date" class="form-control" id="borrow_date" name="borrow_date" value="<?php echo isset($selectedBorrow['borrower_date_modified']) ? htmlspecialchars($selectedBorrow['borrower_date_modified']) : date('Y-m-d'); ?>">
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary" id="borrow_submit_add_btn">Add Borrow</button>
+              <button type="submit" class="btn btn-primary" name="edit_borrow" style="display:none;">Update Borrow</button>
+              <button type="button" class="btn btn-secondary" onclick="toggleBorrowForm()">Cancel</button>
+            </div>
+          </form>
+       </div>
+
       </div>
 
       <!-- Fine-Users-tab -->
